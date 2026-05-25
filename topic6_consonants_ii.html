@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 6: Lateral, Central, Taps, Trills & Secondary Articulation</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  /* TITLE SLIDE */
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  /* CONTENT SLIDES */
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  /* DEFINITION BOX */
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  /* MOTIVATION BOX — new addition */
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  /* BRANCHES GRID */
+  .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; margin: 20px 0; }
+  .branch-card { border-radius: 14px; padding: 24px 16px; text-align: center; color: #fff; transition: transform 0.2s; }
+  .branch-card:hover { transform: translateY(-5px); }
+  .branch-card.art { background: linear-gradient(135deg,#1a3a5c,#2460a0); }
+  .branch-card.aco { background: linear-gradient(135deg,#7b2d8b,#b044c8); }
+  .branch-card.aud { background: linear-gradient(135deg,#c0392b,#e74c3c); }
+  .branch-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .branch-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .branch-card p { font-size: .85rem; opacity: .9; line-height: 1.4; }
+  .branch-card .focus { margin-top: 10px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 8px; font-size: .75rem; }
+  /* COMPARISON TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  /* NOTATION CARDS */
+  .notation-row { display: flex; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .notation-card { flex: 1; min-width: 200px; border-radius: 14px; padding: 18px; text-align: center; }
+  .notation-card.phone { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .notation-card.phoneme { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .notation-card.allophone { background: #f0fff4; border: 2px solid #90e0a0; }
+  .notation-card .symbol { font-size: 2rem; font-weight: 700; margin: 10px 0; }
+  /* MINIMAL PAIR BOXES */
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .diff-letter { color: var(--accent); font-weight: 900; }
+  /* FEATURE GRID */
+  .feature-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .feature-cell { background: #fff; border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .feature-header { font-size: 1.1rem; font-weight: 700; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; text-align: center; }
+  /* SUMMARY GRID */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .summary-card { background: #fff; border-radius: 12px; padding: 18px; border-top: 4px solid; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  /* INFO NOTE */
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  /* BRACKET DEMO */
+  .bracket-demo { display: flex; gap: 24px; justify-content: center; width: 100%; margin-bottom: 20px; flex-wrap: wrap; }
+  .bracket-item { text-align: center; flex: 1; min-width: 150px; }
+  .bracket-symbol { font-size: 2.8rem; font-weight: 700; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .sq { background: #eaf4ff; color: #1a5c9a; border: 2px solid #aad4f5; }
+  .sl { background: #fff0f5; color: #9a1a4a; border: 2px solid #f5a0c0; }
+  /* ICON GRID (for organs of speech etc.) */
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .icon-card { background: #fff; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.07); border-top: 4px solid var(--primary); }
+  .icon-card .ic-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .icon-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .icon-card p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+  /* ARTICULATOR ROWS */
+  .articulators-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .art-box { flex: 1; min-width: 180px; border-radius: 12px; padding: 16px; }
+  .art-box.active { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .art-box.passive { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .art-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .art-box ul { padding-left: 18px; font-size: .9rem; line-height: 1.7; }
+  /* PLACE TABLE */
+  .place-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .place-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid var(--primary); }
+  .place-card .pl-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .place-card .pl-where { font-size: .85rem; color: var(--muted); margin-bottom: 6px; font-style: italic; }
+  .place-card .pl-sounds { font-size: 1.1rem; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+  /* MANNER CARDS */
+  .manner-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .manner-card { flex: 1; min-width: 180px; border-radius: 14px; padding: 20px; text-align: center; color: #fff; }
+  .manner-card.stop { background: linear-gradient(135deg, #1a3a5c, #2460a0); }
+  .manner-card.fric { background: linear-gradient(135deg, #7b2d8b, #b044c8); }
+  .manner-card.appr { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .manner-card.nasal { background: linear-gradient(135deg, #1a7a40, #2ecc71); }
+  .manner-card.affr { background: linear-gradient(135deg, #c07a00, #f0a500); }
+  .manner-card .m-icon { font-size: 2rem; margin-bottom: 8px; }
+  .manner-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .manner-card p { font-size: .82rem; opacity: .9; line-height: 1.3; }
+  .manner-card .sounds { margin-top: 8px; background: rgba(255,255,255,.2); border-radius: 6px; padding: 4px 8px; font-size: .78rem; letter-spacing: 2px; }
+  /* VOWEL CHART */
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  /* STRESS DIAGRAM */
+  .stress-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .stress-word { background: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; min-width: 140px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .stress-word .syl-stressed { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+  .stress-word .syl-unstressed { font-size: 1.1rem; color: var(--muted); }
+  .stress-word .sw-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  /* RESOURCES SECTION */
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  /* COMPLETION SLIDE */
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  /* QUIZ OVERLAY */
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  /* BOTTOM NAV */
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .place-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 6: Lateral, Central, Taps, Trills & Secondary Articulation</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+
+<!-- SLIDE 1: Title -->
+<div class="slide slide-title" id="s1">
+  <div class="wave-emoji">🌐</div>
+  <div class="big-title">Consonants: Lateral, Taps, Trills & Secondary Articulation</div>
+  <div class="subtitle">Topic 6 — Advanced Consonant Features — English Phonetics Course</div>
+  <div class="badge">🌊 Lateral · Central · Rhotic /r/ · Taps · Trills · Secondary Articulation</div>
+</div>
+
+<!-- SLIDE 2: Motivation -->
+<div class="slide slide-content" id="s2">
+  <div class="slide-header">
+    <div class="tag">Motivation</div>
+  </div>
+  <div class="motivation-box">
+    <div class="mot-title">🌟 Why does this lesson matter?</div>
+    <div class="mot-body">These features help you understand subtle differences between similar sounds — like /l/ vs /r/, or rolled 'r' in Spanish vs English 'r'. They also explain how different accents and languages vary. Understanding these features makes you a more aware speaker and listener.</div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Review -->
+<div class="slide slide-content" id="s3">
+  <div class="slide-header">
+    <span class="tag">Review</span>
+    <h2>Quick Review: Approximants from Topic 5</h2>
+  </div>
+  <div class="card">
+    <p><strong>Remember from Topic 5: APPROXIMANTS are sounds where articulators come close but do NOT touch completely — no friction, smooth sound.</strong></p>
+  </div>
+  <div class="notation-row">
+    <div class="notation-card phone">
+      <div class="symbol">/j/</div>
+      <p>Palatal<br/>yes, you</p>
+    </div>
+    <div class="notation-card phoneme">
+      <div class="symbol">/w/</div>
+      <p>Labio-velar<br/>wet, away</p>
+    </div>
+    <div class="notation-card allophone">
+      <div class="symbol">/r/</div>
+      <p>Alveolar<br/>red, car</p>
+    </div>
+    <div class="notation-card phone" style="background: #e8f5ff; border: 2px solid #3498db;">
+      <div class="symbol">/l/</div>
+      <p>Alveolar Lateral<br/>love, tall</p>
+    </div>
+  </div>
+  <div class="info-note">💡 In this lesson, we focus especially on /l/ (lateral) and /r/ (rhotic), and introduce taps and trills.</div>
+</div>
+
+<!-- SLIDE 4: Central vs Lateral -->
+<div class="slide slide-content" id="s4">
+  <div class="slide-header">
+    <span class="tag">Central vs Lateral</span>
+    <h2>Central vs Lateral Airflow</h2>
+  </div>
+  <div class="definition-box">
+    <div class="term">🌊 Central vs Lateral</div>
+    <div class="def">In most consonants, air flows through the CENTRE of the mouth (central). In /l/, air flows over the SIDES (lateral) of the tongue while the tip touches the alveolar ridge.</div>
+    <div class="example">💡 Say 'la la la' — feel how your tongue tip stays on the ridge but air escapes around the SIDES.</div>
+  </div>
+  <div class="articulators-row">
+    <div class="art-box active">
+      <h4>🌊 LATERAL — /l/</h4>
+      <p>Tongue TIP touches alveolar ridge. Air flows around the SIDES. Only ONE lateral in standard English: /l/. Examples: love, tall, ball, milk</p>
+    </div>
+    <div class="art-box passive">
+      <h4>➡️ CENTRAL — all other sounds</h4>
+      <p>Air flows through the CENTRE of the mouth. All other English consonants and vowels are central. Examples: /t/ /d/ /n/ /r/ /s/ /z/ and all vowels</p>
+    </div>
+  </div>
+  <div class="info-note">💡 Say 'nil' vs 'nit' — in 'nil', the final /l/ lets air escape around your tongue sides (lateral). In 'nit', the /t/ stops all airflow.</div>
+</div>
+
+<!-- SLIDE 5: Clear L vs Dark L -->
+<div class="slide slide-content" id="s5">
+  <div class="slide-header">
+    <span class="tag">Clear L vs Dark L</span>
+    <h2>The Two Allophones of /l/</h2>
+  </div>
+  <div class="definition-box" style="border-left: 5px solid var(--green); background: #f0fff4;">
+    <div class="term" style="color: var(--green);">🔦 Clear /l/ vs Dark /ɫ/</div>
+    <div class="def">English /l/ has TWO allophones depending on position in the word.</div>
+    <div class="example">💡 'light' starts with CLEAR l (before a vowel). 'full' ends with DARK l (after a vowel or before a consonant).</div>
+  </div>
+  <div class="card">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Allophone</th>
+          <th>Position</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Clear [l]</td>
+          <td>Before a vowel or /j/</td>
+          <td>light, love, please, million</td>
+        </tr>
+        <tr>
+          <td>Dark [ɫ]</td>
+          <td>After a vowel or before a consonant</td>
+          <td>full, ball, milk, help, old</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-note">💡 In many English accents (like Southern British English), the dark /l/ can even become a vowel-like sound! This is called L-VOCALIZATION. 'milk' sounds like 'miwk'.</div>
+</div>
+
+<!-- SLIDE 6: The Rhotic R -->
+<div class="slide slide-content" id="s6">
+  <div class="slide-header">
+    <span class="tag">The Rhotic /r/</span>
+    <h2>The English /r/ — A Special Approximant</h2>
+  </div>
+  <div class="definition-box">
+    <div class="term">🔄 Rhotic /r/</div>
+    <div class="def">The English /r/ is a voiced APPROXIMANT — the tongue curves slightly backward or bunches up, but does NOT touch the roof of the mouth. Air flows freely.</div>
+    <div class="example">💡 English /r/ is very different from the rolled 'r' in Spanish ('perro') or the tapped 'r' in Arabic!</div>
+  </div>
+  <div class="card">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example Language</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>English /r/</td>
+          <td>Tongue curves back — approximant — NO contact</td>
+          <td>English</td>
+        </tr>
+        <tr>
+          <td>Tapped /r/ [ɾ]</td>
+          <td>Tongue briefly taps the alveolar ridge ONCE</td>
+          <td>Spanish 'pero', American English 'butter'</td>
+        </tr>
+        <tr>
+          <td>Trill /r/ [r]</td>
+          <td>Tongue vibrates rapidly against the alveolar ridge</td>
+          <td>Spanish 'perro', Arabic, Italian</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-note">💡 For English /r/, remember: the tongue NEVER touches the palate — it just curves back slightly.</div>
+</div>
+
+<!-- SLIDE 7: Taps and Trills -->
+<div class="slide slide-content" id="s7">
+  <div class="slide-header">
+    <span class="tag">Taps and Trills</span>
+    <h2>Taps, Flaps and Trills</h2>
+  </div>
+  <div class="branches-grid">
+    <div class="branch-card art">
+      <div class="icon">👉</div>
+      <h3>Tap / Flap [ɾ]</h3>
+      <p>The tongue TIP makes ONE VERY QUICK touch against the alveolar ridge. It's like a very fast /t/ or /d/.</p>
+      <div class="focus">Example: Spanish 'pero' (but), American English 'butter' [bʌɾɚ]</div>
+    </div>
+    <div class="branch-card aco">
+      <div class="icon">🎵</div>
+      <h3>Trill [r]</h3>
+      <p>The tongue tip VIBRATES rapidly against the alveolar ridge. Multiple contacts in rapid succession.</p>
+      <div class="focus">Example: Spanish 'perro' (dog), Arabic ر, Italian 'terra'</div>
+    </div>
+  </div>
+  <div class="info-note">💡 IMPORTANT: Standard English does NOT use taps or trills — English /r/ is an approximant. But knowing these helps you understand other languages and accents!</div>
+</div>
+
+<!-- SLIDE 8: Secondary Articulation -->
+<div class="slide slide-content" id="s8">
+  <div class="slide-header">
+    <span class="tag">Secondary Articulation</span>
+    <h2>Secondary Articulation</h2>
+  </div>
+  <div class="definition-box" style="border-left: 5px solid #7b2d8b; background: #fdf0ff;">
+    <div class="term" style="color: #7b2d8b;">🎭 Secondary Articulation</div>
+    <div class="def">An EXTRA modification added to a sound, in addition to its main (primary) place and manner of articulation.</div>
+    <div class="example">💡 The /w/ in 'wet' has TWO places: main = velar (back of tongue raised) AND secondary = labial (lips rounded). This is called LABIALIZATION.</div>
+  </div>
+  <div class="card">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          <th>English Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Labialization</td>
+          <td>Lips are ROUNDED in addition to the main articulation</td>
+          <td>/w/ in 'wet'</td>
+        </tr>
+        <tr>
+          <td>Palatalization</td>
+          <td>Tongue body moves toward HARD PALATE in addition</td>
+          <td>/j/ influence in some words</td>
+        </tr>
+        <tr>
+          <td>Nasalization</td>
+          <td>Velum lowers — air goes through NOSE</td>
+          <td>vowels before nasal consonants (e.g., 'man')</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-note">💡 Secondary articulations are subtle. You do not usually HEAR them as separate sounds — they are extra features of the main sound.</div>
+</div>
+
+<!-- SLIDE 9: Labialization & Nasalization -->
+<div class="slide slide-content" id="s9">
+  <div class="slide-header">
+    <span class="tag">Labialization & Nasalization</span>
+    <h2>Two Key Secondary Articulations</h2>
+  </div>
+  <div class="definition-box" style="border-left: 5px solid #1a5c9a; background: #eaf4ff;">
+    <div class="term" style="color: #1a5c9a;">💧 Labialization</div>
+    <div class="def">The lips become ROUNDED while the main articulation is made elsewhere. /w/ is labialized because the back of the tongue rises (primary = velar) AND the lips round (secondary = labial).</div>
+    <div class="example">💡 Say 'wet' slowly — notice how your lips round BEFORE your tongue does anything. This simultaneous rounding is labialization.</div>
+  </div>
+  <div class="definition-box" style="border-left: 5px solid #1a7a40; background: #f0fff4;">
+    <div class="term" style="color: #1a7a40;">👃 Nasalization</div>
+    <div class="def">The soft palate (velum) LOWERS slightly, allowing some air to flow through the nose even during a non-nasal sound. This often happens to vowels that come BEFORE nasal consonants.</div>
+    <div class="example">💡 In 'man', the vowel /æ/ is slightly nasalized because the velum starts lowering for the final /n/.</div>
+  </div>
+</div>
+
+<!-- SLIDE 10: Summary -->
+<div class="slide slide-content" id="s10">
+  <div class="slide-header">
+    <span class="tag">Summary</span>
+    <h2>Topic 6 Summary</h2>
+  </div>
+  <div class="summary-grid">
+    <div class="summary-card" style="border-top: 4px solid var(--accent);">
+      <strong style="color: var(--accent);">Lateral /l/</strong><br/>
+      Air flows over the SIDES of tongue — only lateral in English
+    </div>
+    <div class="summary-card" style="border-top: 4px solid var(--primary);">
+      <strong style="color: var(--primary);">Central Consonants</strong><br/>
+      Air flows through the CENTRE — all other consonants and vowels
+    </div>
+    <div class="summary-card" style="border-top: 4px solid var(--green);">
+      <strong style="color: var(--green);">Clear /l/ vs Dark /ɫ/</strong><br/>
+      Two allophones of /l/ based on word position
+    </div>
+    <div class="summary-card" style="border-top: 4px solid #7b2d8b;">
+      <strong style="color: #7b2d8b;">English /r/ Approximant</strong><br/>
+      Tongue curves back — no contact — no trill or tap!
+    </div>
+    <div class="summary-card" style="border-top: 4px solid #c0392b;">
+      <strong style="color: #c0392b;">Tap [ɾ] vs Trill [r]</strong><br/>
+      One quick touch vs rapid vibration — not used in standard English
+    </div>
+    <div class="summary-card" style="border-top: 4px solid var(--gold);">
+      <strong style="color: var(--gold);">Secondary Articulation</strong><br/>
+      Extra modification added to main articulation — e.g., labialization, nasalization
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Resources -->
+<div class="slide slide-content" id="s11">
+  <div class="resource-section">
+    <h3>🌐 Explore these sounds online:</h3>
+    <div class="resource-links">
+      <a href="https://soundsofspeech.uiowa.edu/" target="_blank" class="resource-link">🎬 Sounds of Speech — Animated Consonants</a>
+      <a href="https://www.ipachart.com" target="_blank" class="resource-link">🗺️ Interactive IPA Chart</a>
+      <a href="https://www.cambridge.org/elt/phonetics" target="_blank" class="resource-link">🔊 Hear tapped and trilled r sounds</a>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: Completion -->
+<div class="slide completion-slide" id="s12">
+  <div class="comp-icon">🌐</div>
+  <h2>Topic 6 Complete!</h2>
+  <p>You now understand subtle consonant distinctions that make a real difference in pronunciation. You are developing a professional phonetic ear!</p>
+  <div class="comp-badges">
+    <div class="comp-badge">✅ Lateral vs Central Airflow</div>
+    <div class="comp-badge">✅ Clear & Dark /l/</div>
+    <div class="comp-badge">✅ English /r/ vs Taps & Trills</div>
+    <div class="comp-badge">✅ Secondary Articulation</div>
+  </div>
+</div>
+
+</div>
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+<script>
+// ═══════════════════════ QUIZ DATA ═══════════════════════
+const QUIZZES = [
+  {
+    afterSlide: 4,
+    badge: "❓ Quiz 1 of 4",
+    question: "When you say /l/ in 'love', air flows around the SIDES of your tongue while the tip stays at the alveolar ridge. This makes /l/ a _____ consonant.",
+    options: ["Central", "Fricative", "Lateral", "Nasal"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! /l/ is a LATERAL consonant because air flows around the LATERAL (side) edges of the tongue, not through the middle.",
+    feedbackWrong: "❌ 'Lateral' means 'side'. In /l/, the tongue tip touches the alveolar ridge but air flows around the SIDES of the tongue. So /l/ is a LATERAL consonant."
+  },
+  {
+    afterSlide: 5,
+    badge: "❓ Quiz 2 of 4",
+    question: "English /l/ has two allophones: 'clear l' and 'dark l'. Which one appears at the END of a word like 'ball'?",
+    options: ["Clear /l/ — before a vowel", "Dark /ɫ/ — after a vowel or before a consonant", "They are the same in all positions", "Clear /l/ — at the end of words"],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! DARK /ɫ/ appears AFTER vowels or before consonants — so at the end of words like 'ball', 'full', 'milk'. CLEAR /l/ comes BEFORE vowels, like in 'love' or 'light'.",
+    feedbackWrong: "❌ The rule is: CLEAR /l/ appears BEFORE vowels (light, love). DARK /ɫ/ appears AFTER vowels or before consonants (ball, full, milk). At the end of 'ball' — it's DARK /ɫ/."
+  },
+  {
+    afterSlide: 7,
+    badge: "❓ Quiz 3 of 4",
+    question: "What is the key difference between a TAP [ɾ] and a TRILL [r]?",
+    options: ["A tap is voiceless; a trill is voiced", "A tap involves ONE quick tongue contact; a trill involves RAPID REPEATED vibration", "A tap is labial; a trill is alveolar", "Taps are used in English; trills are not"],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! A TAP (or flap) involves ONE brief contact of the tongue against the alveolar ridge. A TRILL involves the tongue vibrating repeatedly (multiple contacts). Spanish 'pero' (tap) vs 'perro' (trill).",
+    feedbackWrong: "❌ The key difference is number of contacts: A TAP = ONE quick touch of the tongue. A TRILL = the tongue VIBRATES rapidly (many contacts). Both can be voiced."
+  },
+  {
+    afterSlide: 8,
+    badge: "❓ Quiz 4 of 4",
+    question: "The consonant /w/ in 'wet' has TWO places of articulation: the back of the tongue rises (velar) AND the lips round. What is this extra lip-rounding called?",
+    options: ["Nasalization", "Palatalization", "Labialization", "Vocalization"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! LABIALIZATION is the addition of lip-rounding as a secondary articulation. /w/ is technically a labialized velar approximant because it has both velar (primary) and labial (secondary) articulation.",
+    feedbackWrong: "❌ When lips become ROUNDED as an extra feature added to a main articulation, this is called LABIALIZATION. /w/ is labialized because you both raise the back of your tongue AND round your lips."
+  }
+];
+// ═══════════════════════ STATE ═══════════════════════
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+// ═══════════════════════ NAVIGATION ═══════════════════════
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('s' + n);
+  if (t) t.classList.add('active');
+  document.getElementById('btn-prev').disabled = (n <= 1);
+  document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES);
+  updateDots(); updateProgress();
+}
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide));
+}
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%';
+  document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES;
+}
+function nextSlide() {
+  const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide);
+  if (idx !== -1) { activeQuiz = quizQueue[idx]; openQuiz(activeQuiz); return; }
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); }
+}
+function prevSlide() {
+  if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); }
+}
+function goToSlide(n) {
+  if (n >= 1 && n <= TOTAL_SLIDES) { currentSlide = n; showSlide(currentSlide); }
+}
+function openQuiz(quiz) {
+  quizAnswered = false;
+  document.getElementById('q-badge').textContent = quiz.badge;
+  document.getElementById('q-question').textContent = quiz.question;
+  document.getElementById('q-feedback').className = 'quiz-feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-continue').style.display = 'none';
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  ['A','B','C','D'].forEach((l, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>';
+    btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+function selectAnswer(chosen, correct, fbC, fbW) {
+  if (quizAnswered) return; quizAnswered = true;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('q-feedback');
+  document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong');
+  if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct');
+  fb.textContent = chosen === correct ? fbC : fbW;
+  fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('q-continue').style.display = 'inline-block';
+  const idx = quizQueue.findIndex(q => q === activeQuiz);
+  if (idx !== -1) quizQueue.splice(idx, 1);
+}
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); }
+}
+function openFullPage() { window.open(window.location.href, '_blank'); }
+document.addEventListener('keydown', e => {
+  if (document.getElementById('quiz-overlay').classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function buildDots() {
+  const row = document.getElementById('dot-row');
+  row.innerHTML = '';
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    row.appendChild(d);
+  }
+}
+buildDots(); showSlide(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 11: Syllables, Word Stress & Intonation</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  /* TITLE SLIDE */
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  /* CONTENT SLIDES */
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  /* DEFINITION BOX */
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  /* MOTIVATION BOX — new addition */
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  /* BRANCHES GRID */
+  .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; margin: 20px 0; }
+  .branch-card { border-radius: 14px; padding: 24px 16px; text-align: center; color: #fff; transition: transform 0.2s; }
+  .branch-card:hover { transform: translateY(-5px); }
+  .branch-card.art { background: linear-gradient(135deg,#1a3a5c,#2460a0); }
+  .branch-card.aco { background: linear-gradient(135deg,#7b2d8b,#b044c8); }
+  .branch-card.aud { background: linear-gradient(135deg,#c0392b,#e74c3c); }
+  .branch-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .branch-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .branch-card p { font-size: .85rem; opacity: .9; line-height: 1.4; }
+  .branch-card .focus { margin-top: 10px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 8px; font-size: .75rem; }
+  /* COMPARISON TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  /* NOTATION CARDS */
+  .notation-row { display: flex; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .notation-card { flex: 1; min-width: 200px; border-radius: 14px; padding: 18px; text-align: center; }
+  .notation-card.phone { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .notation-card.phoneme { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .notation-card.allophone { background: #f0fff4; border: 2px solid #90e0a0; }
+  .notation-card .symbol { font-size: 2rem; font-weight: 700; margin: 10px 0; }
+  /* MINIMAL PAIR BOXES */
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .diff-letter { color: var(--accent); font-weight: 900; }
+  /* FEATURE GRID */
+  .feature-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .feature-cell { background: #fff; border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .feature-header { font-size: 1.1rem; font-weight: 700; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; text-align: center; }
+  /* SUMMARY GRID */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .summary-card { background: #fff; border-radius: 12px; padding: 18px; border-top: 4px solid; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  /* INFO NOTE */
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  /* BRACKET DEMO */
+  .bracket-demo { display: flex; gap: 24px; justify-content: center; width: 100%; margin-bottom: 20px; flex-wrap: wrap; }
+  .bracket-item { text-align: center; flex: 1; min-width: 150px; }
+  .bracket-symbol { font-size: 2.8rem; font-weight: 700; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .sq { background: #eaf4ff; color: #1a5c9a; border: 2px solid #aad4f5; }
+  .sl { background: #fff0f5; color: #9a1a4a; border: 2px solid #f5a0c0; }
+  /* ICON GRID (for organs of speech etc.) */
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .icon-card { background: #fff; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.07); border-top: 4px solid var(--primary); }
+  .icon-card .ic-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .icon-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .icon-card p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+  /* ARTICULATOR ROWS */
+  .articulators-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .art-box { flex: 1; min-width: 180px; border-radius: 12px; padding: 16px; }
+  .art-box.active { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .art-box.passive { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .art-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .art-box ul { padding-left: 18px; font-size: .9rem; line-height: 1.7; }
+  /* PLACE TABLE */
+  .place-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .place-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid var(--primary); }
+  .place-card .pl-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .place-card .pl-where { font-size: .85rem; color: var(--muted); margin-bottom: 6px; font-style: italic; }
+  .place-card .pl-sounds { font-size: 1.1rem; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+  /* MANNER CARDS */
+  .manner-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .manner-card { flex: 1; min-width: 180px; border-radius: 14px; padding: 20px; text-align: center; color: #fff; }
+  .manner-card.stop { background: linear-gradient(135deg, #1a3a5c, #2460a0); }
+  .manner-card.fric { background: linear-gradient(135deg, #7b2d8b, #b044c8); }
+  .manner-card.appr { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .manner-card.nasal { background: linear-gradient(135deg, #1a7a40, #2ecc71); }
+  .manner-card.affr { background: linear-gradient(135deg, #c07a00, #f0a500); }
+  .manner-card .m-icon { font-size: 2rem; margin-bottom: 8px; }
+  .manner-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .manner-card p { font-size: .82rem; opacity: .9; line-height: 1.3; }
+  .manner-card .sounds { margin-top: 8px; background: rgba(255,255,255,.2); border-radius: 6px; padding: 4px 8px; font-size: .78rem; letter-spacing: 2px; }
+  /* VOWEL CHART */
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  /* STRESS DIAGRAM */
+  .stress-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .stress-word { background: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; min-width: 140px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .stress-word .syl-stressed { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+  .stress-word .syl-unstressed { font-size: 1.1rem; color: var(--muted); }
+  .stress-word .sw-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  /* RESOURCES SECTION */
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  /* COMPLETION SLIDE */
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  /* QUIZ OVERLAY */
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  /* BOTTOM NAV */
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .place-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 11: Syllables, Words & Sentences</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+  <div class="slide slide-title" id="s1">
+    <div class="wave-emoji">🥁</div>
+    <div class="big-title">English Pronunciation: Syllables, Words & Sentences</div>
+    <div class="subtitle">Topic 11 — Suprasegmental Features — English Phonetics Course</div>
+    <div class="badge">🥁 Syllables · Syllable Structure · Word Stress · Sentence Stress · Basic Intonation</div>
+  </div>
+
+  <div class="slide slide-content" id="s2">
+    <div class="motivation-box">
+      <div class="mot-title">🌟 Why does this lesson matter?</div>
+      <div class="mot-body">Stress is the BIGGEST cause of misunderstanding in English communication. Put stress in the wrong place and listeners may not recognise the word at all! Correct stress and intonation are what make English sound natural — even more than correct individual sounds.</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s3">
+    <div class="slide-header">
+      <div class="tag">Syllables</div>
+      <h2>What is a Syllable?</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🥁 Syllable</div>
+      <div class="def">A unit of spoken language that contains ONE vowel sound. It is the basic 'beat' of a word.</div>
+      <div class="example">💡 'cat' has ONE beat — ONE syllable. 'tea-cher' has TWO beats — TWO syllables. Clap your hands to count syllables!</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Word</th>
+          <th>Number of Syllables</th>
+          <th>Clap Pattern</th>
+        </tr>
+        <tr>
+          <td>cat</td>
+          <td>1</td>
+          <td>cat</td>
+        </tr>
+        <tr>
+          <td>teacher</td>
+          <td>2</td>
+          <td>tea — cher</td>
+        </tr>
+        <tr>
+          <td>computer</td>
+          <td>3</td>
+          <td>com — pu — ter</td>
+        </tr>
+        <tr>
+          <td>university</td>
+          <td>5</td>
+          <td>u — ni — ver — si — ty</td>
+        </tr>
+        <tr>
+          <td>communication</td>
+          <td>5</td>
+          <td>com — mu — ni — ca — tion</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">🥁 Try the CLAP TEST: clap once for each syllable as you say the word. This physical method works perfectly for beginners.</div>
+  </div>
+
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <div class="tag">Syllable Structure</div>
+      <h2>Inside a Syllable: Onset, Nucleus, Coda</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🏗️ Syllable Structure</div>
+      <div class="def">Every syllable has up to 3 parts: ONSET (consonants before the vowel) + NUCLEUS (the vowel — required!) + CODA (consonants after the vowel).</div>
+      <div class="example">💡 'cat': onset = /k/, nucleus = /æ/, coda = /t/. Every syllable MUST have a nucleus (vowel) — onset and coda are optional.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Onset (optional)</th>
+          <th>Nucleus (required)</th>
+          <th>Coda (optional)</th>
+        </tr>
+        <tr>
+          <td>/k/</td>
+          <td>/æ/</td>
+          <td>/t/</td>
+        </tr>
+        <tr>
+          <td>/s/ /t/</td>
+          <td>/iː/</td>
+          <td>/p/</td>
+        </tr>
+        <tr>
+          <td>— (no onset)</td>
+          <td>/ɪ/</td>
+          <td>— (no coda)</td>
+        </tr>
+        <tr>
+          <td>/s/ /t/ /r/</td>
+          <td>/ɪ/</td>
+          <td>/ŋ/</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 'strength' = /streŋθ/ — THREE consonants in the onset (str) and TWO in the coda (ŋθ). English allows complex syllable structures!</div>
+  </div>
+
+  <div class="slide slide-content" id="s5">
+    <div class="slide-header">
+      <div class="tag">Word Stress</div>
+      <h2>Word Stress: Every Word Has a Beat ♪</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">♪ Word Stress</div>
+      <div class="def">In any English word with TWO or more syllables, ONE syllable is said LOUDER, LONGER, and at a HIGHER PITCH than the others. This is the STRESSED syllable.</div>
+      <div class="example">💡 'TEAcher' — the first syllable TEA is STRESSED (louder, longer, higher). The second syllable -cher is UNSTRESSED (shorter, quieter, often becomes schwa).</div>
+    </div>
+    <div class="stress-row">
+      <div class="stress-word">
+        <div class="syl-stressed">TEA</div>
+        <div class="syl-unstressed">-cher</div>
+        <div class="sw-label">TEAcher ✅</div>
+      </div>
+      <div class="stress-word">
+        <div class="syl-stressed">COM</div>
+        <div class="syl-unstressed">-pu-ter</div>
+        <div class="sw-label">COMputer ✅</div>
+      </div>
+      <div class="stress-word">
+        <div class="syl-stressed">U</div>
+        <div class="syl-unstressed">-ni-VER-si-ty</div>
+        <div class="sw-label">uniVERsity ✅</div>
+      </div>
+      <div class="stress-word">
+        <div class="syl-stressed">MO</div>
+        <div class="syl-unstressed">-ther</div>
+        <div class="sw-label">MOther ✅</div>
+      </div>
+    </div>
+    <div class="info-note">🎯 In IPA, the stress mark ˈ appears BEFORE the stressed syllable: /ˈtiːtʃər/ = 'TEAcher', /kəmˈpjuːtər/ = 'comPUter'</div>
+  </div>
+
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <div class="tag">Stress Patterns</div>
+      <h2>Noun vs Verb Stress Pairs 🔄</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🔄 Same Word — Different Stress — Different Meaning!</div>
+      <div class="mot-body">Some English words are spelled the same but have different stress depending on whether they are a NOUN or a VERB. This is called a STRESS MINIMAL PAIR.</div>
+    </div>
+    <div class="pair-container">
+      <div class="pair-box">PREsent (noun) ↔ preSENT (verb)</div>
+      <div class="pair-box">REcord (noun) ↔ reCORD (verb)</div>
+      <div class="pair-box">PROtest (noun) ↔ proTEST (verb)</div>
+      <div class="pair-box">PERmit (noun) ↔ perMIT (verb)</div>
+      <div class="pair-box">OBject (noun) ↔ obJECT (verb)</div>
+      <div class="pair-box">CONtent (noun) ↔ conTENT (adjective)</div>
+    </div>
+    <div class="card">
+      💡 In nouns, stress is usually on the FIRST syllable. In verbs, stress is often on the SECOND syllable. This is not a perfect rule but works for many common words.
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s7">
+    <div class="slide-header">
+      <div class="tag">Weak Forms</div>
+      <h2>Unstressed Words in Connected Speech</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">⬇️ Weak Forms</div>
+      <div class="def">Very common words (articles, prepositions, conjunctions, pronouns) are usually UNSTRESSED in sentences — their vowels reduce to schwa /ə/ or are shortened.</div>
+      <div class="example">💡 Say 'I want to go' naturally — 'to' becomes /tə/, not /tuː/. Say 'the cat' — 'the' becomes /ðə/, not /ðiː/.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Word</th>
+          <th>Strong Form</th>
+          <th>Weak Form in Normal Speech</th>
+        </tr>
+        <tr>
+          <td>the</td>
+          <td>/ðiː/</td>
+          <td>/ðə/ (before consonants)</td>
+        </tr>
+        <tr>
+          <td>a</td>
+          <td>/eɪ/</td>
+          <td>/ə/</td>
+        </tr>
+        <tr>
+          <td>to</td>
+          <td>/tuː/</td>
+          <td>/tə/</td>
+        </tr>
+        <tr>
+          <td>of</td>
+          <td>/ɒv/</td>
+          <td>/əv/</td>
+        </tr>
+        <tr>
+          <td>and</td>
+          <td>/ænd/</td>
+          <td>/ən/ or /n/</td>
+        </tr>
+        <tr>
+          <td>for</td>
+          <td>/fɔː/</td>
+          <td>/fər/</td>
+        </tr>
+        <tr>
+          <td>at</td>
+          <td>/æt/</td>
+          <td>/ət/</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 Using strong forms for ALL words makes you sound unnatural and 'textbook'. Using weak forms is a hallmark of natural English speech.</div>
+  </div>
+
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <div class="tag">Sentence Stress</div>
+      <h2>Sentence Stress: What Do We Emphasize?</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">📢 Sentence Stress</div>
+      <div class="def">In a sentence, some words are STRESSED (spoken louder/longer) and others are UNSTRESSED. CONTENT words are stressed; FUNCTION words are usually unstressed.</div>
+      <div class="example">💡 "The CAT sat on the MAT" — stressed: CAT, sat, MAT. Unstressed: the, on, the.</div>
+    </div>
+    <div class="articulators-row">
+      <div class="art-box active">
+        <h4>📢 CONTENT Words (STRESSED)</h4>
+        <p>Nouns (cat, house), Main Verbs (run, eat), Adjectives (big, happy), Adverbs (quickly, very) — these carry MEANING</p>
+      </div>
+      <div class="art-box passive">
+        <h4>⬇️ FUNCTION Words (usually unstressed)</h4>
+        <p>Articles (the, a), Prepositions (in, on, at), Pronouns (he, she, it), Conjunctions (and, but, or) — these provide GRAMMAR but less meaning</p>
+      </div>
+    </div>
+    <div class="info-note">💡 The stressed words carry the MOST IMPORTANT information. If you only heard the stressed words, you would still understand the sentence.</div>
+  </div>
+
+  <div class="slide slide-content" id="s9">
+    <div class="slide-header">
+      <div class="tag">Basic Intonation</div>
+      <h2>Intonation: The Music of English 🎵</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🎵 Intonation</div>
+      <div class="def">The rise and fall of the PITCH (musical note) of your voice over a sentence. Intonation tells listeners whether you are making a statement, asking a question, or showing a particular attitude.</div>
+      <div class="example">💡 Say 'You're coming' as a STATEMENT (voice falls ↘) vs a QUESTION (voice rises ↗). Same words — different meaning!</div>
+    </div>
+    <div class="notation-row">
+      <div class="notation-card phone">
+        <div class="symbol">↘</div>
+        <div class="card" style="background: #fff; border: none; padding: 8px; margin-top: 8px; box-shadow: none;">
+          <strong>Falling Tone</strong>
+          <p style="font-size: 0.85rem; margin-top: 6px;">Statements: 'It's raining ↘'. Commands: 'Sit down ↘'. Wh-questions: 'Where do you live ↘'</p>
+        </div>
+      </div>
+      <div class="notation-card phoneme">
+        <div class="symbol">↗</div>
+        <div class="card" style="background: #fff; border: none; padding: 8px; margin-top: 8px; box-shadow: none;">
+          <strong>Rising Tone</strong>
+          <p style="font-size: 0.85rem; margin-top: 6px;">Yes/No questions: 'Are you coming ↗?'. Listing items (not last one): 'I have tea ↗, coffee ↗, or juice ↘'</p>
+        </div>
+      </div>
+    </div>
+    <div class="info-note">🎵 Intonation is very important for politeness! A statement said with a RISING tone can sound like a question or uncertainty. A question said with a FALLING tone can sound rude or demanding.</div>
+  </div>
+
+  <div class="slide slide-content" id="s10">
+    <div class="slide-header">
+      <div class="tag">Practice</div>
+      <h2>Stress & Intonation Practice 🎯</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🗣️ Spoken Practice Activities</div>
+      <div class="mot-body">Try these activities to develop your awareness of stress and intonation in English.</div>
+    </div>
+    <div class="card">
+      <strong>ACTIVITY 1 — STRESS: Clap the stress in these words:</strong>
+      <div class="pair-container" style="margin-top: 12px;">
+        <div class="pair-box">PREsent / preSENT</div>
+        <div class="pair-box">TEAcher / computer</div>
+        <div class="pair-box">PHOtograph / phoTOgraphy</div>
+        <div class="pair-box">UNiversity / coMMUnicate</div>
+        <div class="pair-box">REcord (noun) / reCORD (verb)</div>
+      </div>
+    </div>
+    <div class="card">
+      <strong>ACTIVITY 2 — INTONATION: Say these sentences twice. First as a STATEMENT ↘, then as a QUESTION ↗:</strong>
+      <p style="margin-top: 12px; font-size: 0.95rem; line-height: 1.6;">
+        1. You're coming. / You're coming?<br>
+        2. She lives here. / She lives here?<br>
+        3. He's a student. / He's a student?
+      </p>
+    </div>
+    <div class="info-note">💡 Record yourself speaking these sentences and compare to native speaker examples on BBC Learning English or Cambridge Dictionary audio.</div>
+  </div>
+
+  <div class="slide slide-content" id="s11">
+    <div class="resource-section">
+      <h3>Practice stress and intonation:</h3>
+      <div class="resource-links">
+        <a class="resource-link" href="https://www.bbc.co.uk/learningenglish/english/features/pronunciation" target="_blank">📻 BBC Learning English — Pronunciation</a>
+        <a class="resource-link" href="https://dictionary.cambridge.org" target="_blank">🔊 Cambridge Dictionary — hear word stress in every entry</a>
+        <a class="resource-link" href="https://www.englishclub.com/pronunciation/stress.php" target="_blank">🎵 English Club — Stress & Intonation</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide completion-slide" id="s12">
+    <div class="comp-icon">🥁</div>
+    <h2>Topic 11 Complete!</h2>
+    <p>You have learned the suprasegmental features of English — the 'music' of the language. Stress and intonation are what make English sound truly natural!</p>
+    <div class="comp-badges">
+      <div class="comp-badge">✅ Syllable Structure (Onset-Nucleus-Coda)</div>
+      <div class="comp-badge">✅ Word Stress & Stress Marks</div>
+      <div class="comp-badge">✅ Sentence Stress & Weak Forms</div>
+      <div class="comp-badge">✅ Basic Intonation (Rising & Falling)</div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+<script>
+// ═══════════════════════ QUIZ DATA ═══════════════════════
+const QUIZZES = [
+  {
+    afterSlide: 3,
+    badge: "❓ Quiz 1 of 4",
+    question: "How many syllables does the word 'university' have?",
+    options: ["3", "4", "5", "6"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! u-ni-ver-si-ty = 5 syllables. Try clapping: u (clap) - ni (clap) - ver (clap) - si (clap) - ty (clap). Count: 5!",
+    feedbackWrong: "❌ Let's clap it out: u (clap) - ni (clap) - ver (clap) - si (clap) - ty (clap). That's 5 claps = 5 syllables. 'university' has FIVE syllables."
+  },
+  {
+    afterSlide: 5,
+    badge: "❓ Quiz 2 of 4",
+    question: "In English, the word 'TEAcher' has stress on the FIRST syllable. This makes it a _____ stress pattern.",
+    options: ["All syllables are equally stressed", "The second syllable is stressed", "The first syllable is stressed — this is most common for 2-syllable NOUNS", "Every syllable has a different stress"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! In English 2-syllable NOUNS, stress usually falls on the FIRST syllable: TEAcher, STUdent, FAther, MOther, WINdow. The ˈ mark in IPA shows where the stress falls: /ˈtiːtʃər/.",
+    feedbackWrong: "❌ In 'teacher', the FIRST syllable 'TEA-' is stressed. For most 2-syllable English NOUNS, stress falls on the first syllable: TEAcher, STUdent, FAther. In IPA, the stress mark ˈ comes BEFORE the stressed syllable."
+  },
+  {
+    afterSlide: 7,
+    badge: "❓ Quiz 3 of 4",
+    question: "In natural spoken English, the word 'to' in 'I want to go' is usually pronounced as _____, not /tuː/.",
+    options: ["/tuː/ — always the full strong form", "/tə/ — the weak form with schwa", "/tɔː/ — lengthened vowel", "/te/ — with a short 'e' vowel"],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! In natural speech, 'to' before a consonant is usually the WEAK FORM /tə/ — with a schwa. Only in stressed or emphatic contexts do we use the full form /tuː/ (like 'I said TO go, not FROM go!').",
+    feedbackWrong: "❌ In natural speech, 'to' reduces to its WEAK FORM /tə/ (with a schwa). Only when 'to' is being emphasized do we say the full form /tuː/. 'I want to /tə/ go' — 'to' carries very little information and is therefore unstressed and weakened."
+  },
+  {
+    afterSlide: 9,
+    badge: "❓ Quiz 4 of 4",
+    question: "You ask someone 'Are you coming?' in English. The intonation should be _____ to sound like a genuine yes/no question.",
+    options: ["Falling ↘ — the voice goes down at the end", "Flat — completely level throughout", "Rising ↗ — the voice goes up at the end", "First rising then falling"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! In English, YES/NO questions typically end with a RISING tone ↗. The pitch of your voice goes UP at the end. This contrasts with statements and wh-questions, which typically have FALLING intonation ↘.",
+    feedbackWrong: "❌ YES/NO questions in English typically use RISING intonation ↗ — your voice goes UP at the end. This rising pitch signals that you are asking, not stating. Statements and wh-questions (What? Where? When?) typically use FALLING intonation ↘."
+  }
+];
+// ═══════════════════════ STATE ═══════════════════════
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+// ═══════════════════════ NAVIGATION ═══════════════════════
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('s' + n);
+  if (t) t.classList.add('active');
+  document.getElementById('btn-prev').disabled = (n <= 1);
+  document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES);
+  updateDots(); updateProgress();
+}
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide));
+}
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%';
+  document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES;
+}
+function nextSlide() {
+  const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide);
+  if (idx !== -1) { activeQuiz = quizQueue[idx]; openQuiz(activeQuiz); return; }
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); }
+}
+function prevSlide() {
+  if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); }
+}
+function goToSlide(n) {
+  if (n >= 1 && n <= TOTAL_SLIDES) { currentSlide = n; showSlide(currentSlide); }
+}
+function openQuiz(quiz) {
+  quizAnswered = false;
+  document.getElementById('q-badge').textContent = quiz.badge;
+  document.getElementById('q-question').textContent = quiz.question;
+  document.getElementById('q-feedback').className = 'quiz-feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-continue').style.display = 'none';
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  ['A','B','C','D'].forEach((l, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>';
+    btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+function selectAnswer(chosen, correct, fbC, fbW) {
+  if (quizAnswered) return; quizAnswered = true;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('q-feedback');
+  document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong');
+  if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct');
+  fb.textContent = chosen === correct ? fbC : fbW;
+  fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('q-continue').style.display = 'inline-block';
+  const idx = quizQueue.findIndex(q => q === activeQuiz);
+  if (idx !== -1) quizQueue.splice(idx, 1);
+}
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); }
+}
+function openFullPage() { window.open(window.location.href, '_blank'); }
+document.addEventListener('keydown', e => {
+  if (document.getElementById('quiz-overlay').classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function buildDots() {
+  const row = document.getElementById('dot-row');
+  row.innerHTML = '';
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    row.appendChild(d);
+  }
+}
+buildDots(); showSlide(1);
+</script>
+</body>
+</html>

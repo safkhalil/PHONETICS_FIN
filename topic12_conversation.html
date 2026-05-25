@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 12: Pronunciation in Natural Conversation</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; margin: 20px 0; }
+  .branch-card { border-radius: 14px; padding: 24px 16px; text-align: center; color: #fff; transition: transform 0.2s; }
+  .branch-card:hover { transform: translateY(-5px); }
+  .branch-card.art { background: linear-gradient(135deg,#1a3a5c,#2460a0); }
+  .branch-card.aco { background: linear-gradient(135deg,#7b2d8b,#b044c8); }
+  .branch-card.aud { background: linear-gradient(135deg,#c0392b,#e74c3c); }
+  .branch-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .branch-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .branch-card p { font-size: .85rem; opacity: .9; line-height: 1.4; }
+  .branch-card .focus { margin-top: 10px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 8px; font-size: .75rem; }
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  .notation-row { display: flex; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .notation-card { flex: 1; min-width: 200px; border-radius: 14px; padding: 18px; text-align: center; }
+  .notation-card.phone { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .notation-card.phoneme { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .notation-card.allophone { background: #f0fff4; border: 2px solid #90e0a0; }
+  .notation-card .symbol { font-size: 2rem; font-weight: 700; margin: 10px 0; }
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .diff-letter { color: var(--accent); font-weight: 900; }
+  .feature-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .feature-cell { background: #fff; border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .feature-header { font-size: 1.1rem; font-weight: 700; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; text-align: center; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .summary-card { background: #fff; border-radius: 12px; padding: 18px; border-top: 4px solid; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  .bracket-demo { display: flex; gap: 24px; justify-content: center; width: 100%; margin-bottom: 20px; flex-wrap: wrap; }
+  .bracket-item { text-align: center; flex: 1; min-width: 150px; }
+  .bracket-symbol { font-size: 2.8rem; font-weight: 700; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .sq { background: #eaf4ff; color: #1a5c9a; border: 2px solid #aad4f5; }
+  .sl { background: #fff0f5; color: #9a1a4a; border: 2px solid #f5a0c0; }
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .icon-card { background: #fff; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.07); border-top: 4px solid var(--primary); }
+  .icon-card .ic-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .icon-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .icon-card p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+  .articulators-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .art-box { flex: 1; min-width: 180px; border-radius: 12px; padding: 16px; }
+  .art-box.active { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .art-box.passive { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .art-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .art-box ul { padding-left: 18px; font-size: .9rem; line-height: 1.7; }
+  .place-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .place-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid var(--primary); }
+  .place-card .pl-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .place-card .pl-where { font-size: .85rem; color: var(--muted); margin-bottom: 6px; font-style: italic; }
+  .place-card .pl-sounds { font-size: 1.1rem; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+  .manner-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .manner-card { flex: 1; min-width: 180px; border-radius: 14px; padding: 20px; text-align: center; color: #fff; }
+  .manner-card.stop { background: linear-gradient(135deg, #1a3a5c, #2460a0); }
+  .manner-card.fric { background: linear-gradient(135deg, #7b2d8b, #b044c8); }
+  .manner-card.appr { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .manner-card.nasal { background: linear-gradient(135deg, #1a7a40, #2ecc71); }
+  .manner-card.affr { background: linear-gradient(135deg, #c07a00, #f0a500); }
+  .manner-card .m-icon { font-size: 2rem; margin-bottom: 8px; }
+  .manner-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .manner-card p { font-size: .82rem; opacity: .9; line-height: 1.3; }
+  .manner-card .sounds { margin-top: 8px; background: rgba(255,255,255,.2); border-radius: 6px; padding: 4px 8px; font-size: .78rem; letter-spacing: 2px; }
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  .stress-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .stress-word { background: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; min-width: 140px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .stress-word .syl-stressed { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+  .stress-word .syl-unstressed { font-size: 1.1rem; color: var(--muted); }
+  .stress-word .sw-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .place-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 12: Pronunciation in Natural Conversation</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+  <div class="slide slide-title" id="s1">
+    <div class="wave-emoji">💬</div>
+    <div class="big-title">English Pronunciation in Use: Natural Conversation</div>
+    <div class="subtitle">Topic 12 — Connected Speech & Real-World English — English Phonetics Course</div>
+    <div class="badge">💬 Connected Speech · Linking · Assimilation · Elision · Weak Forms · Fast Speech</div>
+  </div>
+
+  <div class="slide slide-content" id="s2">
+    <div class="motivation-box">
+      <div class="mot-title">🌟 Why does this lesson matter?</div>
+      <div class="mot-body">Real spoken English sounds VERY different from how words look on paper — or even from how you say them individually. Native speakers LINK words together, DROP sounds, and CHANGE sounds in fast speech. This lesson helps you understand and produce natural, connected English.</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s3">
+    <div class="slide-header">
+      <div class="tag">Connected Speech</div>
+      <h2>What is Connected Speech?</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🔗 Connected Speech</div>
+      <div class="def">When we speak naturally and quickly, words do not stay separate — they CONNECT and influence each other. Sounds change, combine, or disappear depending on neighboring sounds.</div>
+      <div class="example">💡 Slowly: "I want to go" — Naturally: "I wanna go." The words flow together and sounds change.</div>
+    </div>
+    <div class="branches-grid">
+      <div class="branch-card art">
+        <div class="icon">🔗</div>
+        <h3>Linking</h3>
+        <p>Sounds connect across word boundaries</p>
+      </div>
+      <div class="branch-card aco">
+        <div class="icon">🔄</div>
+        <h3>Assimilation</h3>
+        <p>A sound CHANGES to match its neighbour</p>
+      </div>
+      <div class="branch-card aud">
+        <div class="icon">✂️</div>
+        <h3>Elision</h3>
+        <p>A sound is DROPPED</p>
+      </div>
+      <div class="branch-card" style="background: linear-gradient(135deg,#1a7a40,#2ecc71);">
+        <div class="icon">➕</div>
+        <h3>Intrusion</h3>
+        <p>An EXTRA sound appears between two vowels</p>
+      </div>
+    </div>
+    <div class="info-note">💡 These are not MISTAKES — they are NORMAL features of natural English speech. All native speakers use them automatically.</div>
+  </div>
+
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <div class="tag">Linking</div>
+      <h2>Linking — Words Flow Together 🔗</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🔗 Consonant-to-Vowel Linking</div>
+      <div class="def">When a word ends in a CONSONANT sound and the next word starts with a VOWEL sound, the consonant LINKS to the vowel — it sounds like the consonant belongs to the second word.</div>
+      <div class="example">💡 'an apple' = sounds like 'a napple'. 'turn off' = sounds like 'tur noff'.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Written</th>
+          <th>Linked Pronunciation</th>
+          <th>Rule</th>
+        </tr>
+        <tr>
+          <td>an apple</td>
+          <td>/ə ˈnæpl/</td>
+          <td>n + vowel</td>
+        </tr>
+        <tr>
+          <td>comes out</td>
+          <td>/kʌm ˈzaʊt/</td>
+          <td>z + vowel</td>
+        </tr>
+        <tr>
+          <td>hold on</td>
+          <td>/həʊl ˈdɒn/</td>
+          <td>d + vowel</td>
+        </tr>
+        <tr>
+          <td>in a few</td>
+          <td>/ɪn ə ˈfjuː/</td>
+          <td>n + schwa + f</td>
+        </tr>
+        <tr>
+          <td>pick it up</td>
+          <td>/pɪ kɪt ˈʌp/</td>
+          <td>k+vowel, t+vowel</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">🔗 Linking is WHY English sometimes sounds like 'one long word' — the words are literally joined together in natural speech!</div>
+  </div>
+
+  <div class="slide slide-content" id="s5">
+    <div class="slide-header">
+      <div class="tag">Weak Forms in Speech</div>
+      <h2>Weak Forms: Words Get Shorter in Sentences</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">⬇️ Function Words Go 'Weak'</div>
+      <div class="mot-body">Common grammar words (the, a, to, of, and, at) are usually UNSTRESSED and REDUCED in natural conversation. If you say these words in their full form every time, you will sound unnatural — like reading from a textbook.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Written Form</th>
+          <th>Strong Form</th>
+          <th>Weak Form in Natural Speech</th>
+        </tr>
+        <tr>
+          <td>I want to go</td>
+          <td>/tuː/</td>
+          <td>'wanna' /wɒnə/ or /tə/</td>
+        </tr>
+        <tr>
+          <td>going to</td>
+          <td>/tuː/</td>
+          <td>'gonna' /ɡɒnə/</td>
+        </tr>
+        <tr>
+          <td>have to</td>
+          <td>—</td>
+          <td>'hafta' /hæftə/</td>
+        </tr>
+        <tr>
+          <td>want to</td>
+          <td>—</td>
+          <td>'wanna' /wɒnə/</td>
+        </tr>
+        <tr>
+          <td>and</td>
+          <td>/ænd/</td>
+          <td>/ən/ or /n/</td>
+        </tr>
+        <tr>
+          <td>of</td>
+          <td>/ɒv/</td>
+          <td>/əv/ or just /ə/</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 'Gonna', 'wanna', 'hafta' are NOT bad grammar — they are natural spoken forms. In FORMAL WRITING, use 'going to', 'want to', 'have to'. In CONVERSATION, the weak forms are normal and expected.</div>
+  </div>
+
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <div class="tag">Assimilation</div>
+      <h2>Assimilation — Sounds Influence Each Other 🔄</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🔄 Assimilation</div>
+      <div class="def">A sound CHANGES to become more like a NEIGHBORING sound. This happens because the mouth prepares for the next sound BEFORE finishing the current one.</div>
+      <div class="example">💡 'ten boys' → sounds like 'TEM boys'. The /n/ changes to /m/ because /b/ (bilabial) pulls the preceding nasal to a bilabial /m/.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Written</th>
+          <th>Assimilated Form</th>
+          <th>Why</th>
+        </tr>
+        <tr>
+          <td>ten boys</td>
+          <td>'tem boys'</td>
+          <td>/n/ → /m/ before bilabial /b/</td>
+        </tr>
+        <tr>
+          <td>ten girls</td>
+          <td>'teng girls'</td>
+          <td>/n/ → /ŋ/ before velar /g/</td>
+        </tr>
+        <tr>
+          <td>handbag</td>
+          <td>'hambag'</td>
+          <td>/n/ → /m/ before bilabial /b/</td>
+        </tr>
+        <tr>
+          <td>this week</td>
+          <td>'thiss week' (extended /s/)</td>
+          <td>voicing assimilation</td>
+        </tr>
+        <tr>
+          <td>good boy</td>
+          <td>'goob boy'</td>
+          <td>/d/ → /b/ before bilabial</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">🔄 Assimilation often happens at WORD BOUNDARIES — the end of one word changes to match the start of the next. This is an automatic, unconscious process in fast speech.</div>
+  </div>
+
+  <div class="slide slide-content" id="s7">
+    <div class="slide-header">
+      <div class="tag">Elision</div>
+      <h2>Elision — Sounds Get Dropped ✂️</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">✂️ Elision</div>
+      <div class="def">A sound is OMITTED (dropped) in fast speech. This usually happens to consonants in awkward clusters or in very common, unstressed words.</div>
+      <div class="example">💡 'next day' → 'nex day' (/t/ dropped because /k/, /s/, /t/ in a row is hard to say quickly). 'last night' → 'lass night'.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Written</th>
+          <th>Elided Form</th>
+          <th>Sound Dropped</th>
+        </tr>
+        <tr>
+          <td>next door</td>
+          <td>'nex door'</td>
+          <td>/t/ dropped</td>
+        </tr>
+        <tr>
+          <td>last time</td>
+          <td>'lass time'</td>
+          <td>/t/ dropped</td>
+        </tr>
+        <tr>
+          <td>most students</td>
+          <td>'moss students'</td>
+          <td>/t/ dropped</td>
+        </tr>
+        <tr>
+          <td>sandwich</td>
+          <td>'sanwich'</td>
+          <td>/d/ dropped</td>
+        </tr>
+        <tr>
+          <td>handbag</td>
+          <td>'hanbag'</td>
+          <td>/d/ dropped</td>
+        </tr>
+        <tr>
+          <td>temperature</td>
+          <td>'temprature'</td>
+          <td>first /ə/ dropped</td>
+        </tr>
+        <tr>
+          <td>comfortable</td>
+          <td>'comftable'</td>
+          <td>/ər/ dropped</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">✂️ Elision is common in FAST SPEECH. In CAREFUL, SLOW speech, all sounds may be pronounced. Being aware of elision helps you understand fast native speech much better.</div>
+  </div>
+
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <div class="tag">Intrusion</div>
+      <h2>Intrusion — Extra Sounds Appear ➕</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">➕ Intrusion</div>
+      <div class="def">An EXTRA sound is ADDED between two vowel sounds to make the transition smoother. This is an unconscious process. Three sounds can intrude: /r/, /j/, and /w/.</div>
+      <div class="example">💡 'saw it' → 'saw(r) it' — an /r/ appears even though 'saw' doesn't end in the letter 'r'. This is called 'intrusive r'.</div>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Written</th>
+          <th>Intrusive Sound</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td>vowel ending in /ɑː ɔː ə/ + vowel</td>
+          <td>/r/ intrudes</td>
+          <td>saw_it → 'saw(r)it', the idea_of → 'the idea(r)of'</td>
+        </tr>
+        <tr>
+          <td>vowel ending in /iː ɪ eɪ/ + vowel</td>
+          <td>/j/ intrudes</td>
+          <td>he_asked → 'he(j)asked', I_am → 'I(j)am'</td>
+        </tr>
+        <tr>
+          <td>vowel ending in /uː ʊ/ + vowel</td>
+          <td>/w/ intrudes</td>
+          <td>do_it → 'do(w)it', who_is → 'who(w)is'</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 INTRUSIVE /r/ is very noticeable in non-rhotic accents (like standard British English). The speaker adds /r/ NOT because it's in the spelling, but because it makes the transition between vowels smoother.</div>
+  </div>
+
+  <div class="slide slide-content" id="s9">
+    <div class="slide-header">
+      <div class="tag">Listening Strategies</div>
+      <h2>Understanding Fast Native Speech 👂</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">👂 How to Understand Fast English Speech</div>
+      <div class="mot-body">When listening to native English speakers in films, podcasts, or real conversations, use these strategies:</div>
+    </div>
+    <div class="card">1. 🎯 Expect LINKING — words connect. 'Turn it off' sounds like 'tur ni toff'.</div>
+    <div class="card">2. ✂️ Expect ELISION — sounds disappear. 'Last night' sounds like 'lass night'.</div>
+    <div class="card">3. ⬇️ Expect WEAK FORMS — function words are short. 'Have you eaten?' sounds like 'Havya eaten?'.</div>
+    <div class="card">4. 🔄 Use CONTEXT — even if you miss a sound, the meaning is usually clear from context.</div>
+    <div class="info-note">💡 Authentic listening practice is the best way to improve: films, podcasts, BBC News, conversations. Start slowly — use subtitles, then wean yourself off them.</div>
+  </div>
+
+  <div class="slide slide-content" id="s10">
+    <div class="slide-header">
+      <div class="tag">Speaking Naturally</div>
+      <h2>Producing Natural Connected Speech 🗣️</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🗣️ Tips for More Natural English Pronunciation</div>
+      <div class="mot-body">You do not need to copy every feature of fast speech immediately. Start with these basics:</div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-card" style="border-top-color: #1a3a5c;">
+        <h4 style="color: #1a3a5c; margin-bottom: 8px;">Link words together</h4>
+        <p style="font-size: 0.9rem; color: #666;">End consonant + start vowel = connect them. Practice: 'turn off' 'an apple' 'hold on'</p>
+      </div>
+      <div class="summary-card" style="border-top-color: #e8532a;">
+        <h4 style="color: #e8532a; margin-bottom: 8px;">Use weak forms</h4>
+        <p style="font-size: 0.9rem; color: #666;">Reduce 'to', 'the', 'and', 'of', 'a' to their weak forms. 'I wanna go'. 'The /ðə/ cat'.</p>
+      </div>
+      <div class="summary-card" style="border-top-color: #2ecc71;">
+        <h4 style="color: #2ecc71; margin-bottom: 8px;">Stress content words</h4>
+        <p style="font-size: 0.9rem; color: #666;">Emphasize the important words in a sentence. Reduce the grammar words.</p>
+      </div>
+      <div class="summary-card" style="border-top-color: #7b2d8b;">
+        <h4 style="color: #7b2d8b; margin-bottom: 8px;">Chunk sentences</h4>
+        <p style="font-size: 0.9rem; color: #666;">Group words into PHRASES, not individual words. 'I'll see you / later today'</p>
+      </div>
+    </div>
+    <div class="info-note">💡 The goal is INTELLIGIBLE, NATURAL English — not perfect imitation of a specific accent. Your personality and identity come through your voice!</div>
+  </div>
+
+  <div class="slide slide-content" id="s11">
+    <div class="resource-section">
+      <h3>Practice connected speech and real English:</h3>
+      <div class="resource-links">
+        <a class="resource-link" href="https://www.bbc.co.uk/learningenglish/english/features/pronunciation" target="_blank">📻 BBC Learning English — Connected Speech</a>
+        <a class="resource-link" href="https://www.elllo.org" target="_blank">🎵 ELLLO — Authentic English conversations with transcripts</a>
+        <a class="resource-link" href="https://dictionary.cambridge.org" target="_blank">🔊 Cambridge Dictionary — hear words in natural sentences</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide completion-slide" id="s12">
+    <div class="comp-icon">🎓</div>
+    <h2>Course Complete — Congratulations! 🎉</h2>
+    <p>You have completed all 12 topics of the English Phonetics course! From key terms and the IPA, through consonants and vowels, to natural connected speech — you have built a strong foundation in English phonetics.</p>
+    <div class="comp-badges">
+      <div class="comp-badge">✅ Connected Speech</div>
+      <div class="comp-badge">✅ Linking & Assimilation</div>
+      <div class="comp-badge">✅ Elision & Intrusion</div>
+      <div class="comp-badge">✅ Natural Conversation Skills</div>
+      <div class="comp-badge">🎓 English Phonetics Course Complete!</div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+<script>
+const QUIZZES = [
+  {
+    afterSlide: 4,
+    badge: "❓ Quiz 1 of 4",
+    question: "In the phrase 'an apple', the final consonant /n/ of 'an' links to the vowel /æ/ at the start of 'apple'. How does this SOUND in natural speech?",
+    options: ["'an apple' — both words pronounced separately", "'a napple' — /n/ links to 'apple'", "'am apple' — /n/ changes to /m/", "'a apple' — the /n/ is dropped"],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! LINKING: when 'an' (/n/ at the end) comes before 'apple' (/æ/ at the start), the /n/ links to the second word — it sounds like 'a napple'. The words flow together into one smooth unit.",
+    feedbackWrong: "❌ LINKING means the final consonant of one word connects to the vowel starting the next word. 'an apple' → sounds like 'a napple' — the /n/ of 'an' links smoothly to the /æ/ of 'apple'."
+  },
+  {
+    afterSlide: 6,
+    badge: "❓ Quiz 2 of 4",
+    question: "In fast speech, 'ten boys' often sounds like 'TEM boys'. The /n/ changes to /m/ because of the following /b/ sound. What is this process called?",
+    options: ["Elision — the /n/ is dropped", "Linking — /n/ connects to /b/", "Assimilation — /n/ changes to match the bilabial /b/", "Intrusion — an extra /m/ is added"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! This is ASSIMILATION. The /n/ (alveolar nasal) changes to /m/ (bilabial nasal) because the following /b/ is bilabial — the mouth prepares for the bilabial /b/ while still making the nasal, resulting in /m/ instead of /n/.",
+    feedbackWrong: "❌ This is ASSIMILATION — one sound CHANGES to become more like a neighboring sound. /n/ (alveolar) → /m/ (bilabial) before /b/ (bilabial). The mouth prepares for the bilabial /b/ and this influences the preceding nasal."
+  },
+  {
+    afterSlide: 7,
+    badge: "❓ Quiz 3 of 4",
+    question: "In fast speech, the /t/ in 'last night' is often dropped — 'lass night'. What is the term for this process of dropping sounds?",
+    options: ["Assimilation", "Linking", "Intrusion", "Elision"],
+    correct: 3,
+    feedbackCorrect: "✅ Correct! ELISION is when a sound is dropped or omitted. The /t/ in 'last' is dropped because the cluster /s/, /t/, /n/ is difficult to say at speed. This is a normal feature of fast natural speech.",
+    feedbackWrong: "❌ When a sound is DROPPED or omitted, this is called ELISION. In 'last night' → 'lass night', the /t/ is elided. This commonly happens in consonant clusters in fast speech."
+  },
+  {
+    afterSlide: 8,
+    badge: "❓ Quiz 4 of 4",
+    question: "In British English, saying 'saw it' often sounds like 'saw(r) it' — with an /r/ sound added between the two words, even though 'saw' doesn't end in the letter 'r'. What is this called?",
+    options: ["Elision — dropping the vowel at the start of 'it'", "Linking — the final vowel links to the next vowel", "Intrusive /r/ — an extra /r/ is added between two vowels", "Assimilation — the vowel changes to match /r/"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! This is INTRUSIVE /r/ — a type of intrusion. An extra /r/ sound appears between two vowels to make the transition smoother. In non-rhotic accents (like standard British English), 'saw it' → 'saw(r) it', 'the idea of' → 'the idea(r) of'.",
+    feedbackWrong: "❌ This is INTRUSION — specifically 'intrusive /r/'. An extra /r/ is added between two vowel sounds to make the transition smoother. 'saw it' → 'saw(r) it'. This is automatic in many British English accents and is NOT considered an error."
+  }
+];
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('s' + n);
+  if (t) t.classList.add('active');
+  document.getElementById('btn-prev').disabled = (n <= 1);
+  document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES);
+  updateDots(); updateProgress();
+}
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide));
+}
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%';
+  document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES;
+}
+function nextSlide() {
+  const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide);
+  if (idx !== -1) { activeQuiz = quizQueue[idx]; openQuiz(activeQuiz); return; }
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); }
+}
+function prevSlide() {
+  if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); }
+}
+function goToSlide(n) {
+  if (n >= 1 && n <= TOTAL_SLIDES) { currentSlide = n; showSlide(currentSlide); }
+}
+function openQuiz(quiz) {
+  quizAnswered = false;
+  document.getElementById('q-badge').textContent = quiz.badge;
+  document.getElementById('q-question').textContent = quiz.question;
+  document.getElementById('q-feedback').className = 'quiz-feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-continue').style.display = 'none';
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  ['A','B','C','D'].forEach((l, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>';
+    btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+function selectAnswer(chosen, correct, fbC, fbW) {
+  if (quizAnswered) return; quizAnswered = true;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('q-feedback');
+  document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong');
+  if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct');
+  fb.textContent = chosen === correct ? fbC : fbW;
+  fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('q-continue').style.display = 'inline-block';
+  const idx = quizQueue.findIndex(q => q === activeQuiz);
+  if (idx !== -1) quizQueue.splice(idx, 1);
+}
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); }
+}
+function openFullPage() { window.open(window.location.href, '_blank'); }
+document.addEventListener('keydown', e => {
+  if (document.getElementById('quiz-overlay').classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function buildDots() {
+  const row = document.getElementById('dot-row');
+  row.innerHTML = '';
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    row.appendChild(d);
+  }
+}
+buildDots(); showSlide(1);
+</script>
+</body>
+</html>

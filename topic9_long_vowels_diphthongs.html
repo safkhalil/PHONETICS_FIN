@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 9: Long Vowels & Diphthongs</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 9: Long Vowels & Diphthongs</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+  <div class="slide slide-title" id="s1">
+    <div class="wave-emoji">🎼</div>
+    <div class="big-title">English Vowels: Long Vowels & Diphthongs</div>
+    <div class="subtitle">Topic 9 — English Phonetics Course</div>
+    <div class="badge">🎼 /iː/ /ɑː/ /ɔː/ /uː/ /ɜː/ · Diphthongs /eɪ/ /aɪ/ /ɔɪ/ /əʊ/ /aʊ/ /ɪə/ /eə/ /ʊə/</div>
+  </div>
+
+  <div class="slide slide-content" id="s2">
+    <div class="slide-header">
+      <div class="tag">Motivation</div>
+      <h2>Why does this lesson matter?</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🌟 Why does this lesson matter?</div>
+      <div class="mot-body">Long vowels and diphthongs help you tell apart words like 'ship' and 'sheep', 'coat' and 'cut', 'day' and 'die'. English has 8 diphthongs — more than most languages! Mastering them will make your English sound much more natural and help your listening comprehension too.</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s3">
+    <div class="slide-header">
+      <div class="tag">Long vs Short</div>
+      <h2>Long Vowels vs Short Vowels</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">⏱️ Long Vowels</div>
+      <div class="def">Vowels that are held for a LONGER duration than short vowels. In IPA, length is marked with the symbol ː (a colon-like symbol). /iː/ is the long version of the sound near /ɪ/.</div>
+      <div class="example">💡 'sit' /sɪt/ (short /ɪ/) vs 'seat' /siːt/ (long /iː/). Feel how much longer you hold the vowel in 'seat'!</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Short Vowel</th>
+        <th>IPA</th>
+        <th>Word</th>
+        <th>Long Version IPA</th>
+      </tr>
+      <tr>
+        <td>Short i</td>
+        <td>/ɪ/</td>
+        <td>sit</td>
+        <td>Long /iː/ — seat</td>
+      </tr>
+      <tr>
+        <td>Short o</td>
+        <td>/ɒ/</td>
+        <td>top</td>
+        <td>Long /ɑː/ — car (different quality)</td>
+      </tr>
+      <tr>
+        <td>Short oo</td>
+        <td>/ʊ/</td>
+        <td>book</td>
+        <td>Long /uː/ — moon</td>
+      </tr>
+      <tr>
+        <td>Short u</td>
+        <td>/ʌ/</td>
+        <td>cup</td>
+        <td>Long /ɜː/ — bird</td>
+      </tr>
+      <tr>
+        <td>Short a</td>
+        <td>/æ/</td>
+        <td>cat</td>
+        <td>Long /ɑː/ — car</td>
+      </tr>
+    </table>
+    <div class="info-note">⏱️ The ː symbol means LONG. /iː/ = long 'ee'. /uː/ = long 'oo'. /ɑː/ = long 'ah'. Duration AND quality both matter!</div>
+  </div>
+
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <div class="tag">Long Vowels 1-3</div>
+      <h2>The 5 Long Vowels of English (Part 1)</h2>
+    </div>
+    <div class="vowel-chart">
+      <div class="vowel-row">
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/iː/</div>
+          <div class="vowel-example">see, sheep, key, feet</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/ɑː/</div>
+          <div class="vowel-example">car, far, park, heart</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/ɔː/</div>
+          <div class="vowel-example">more, law, court, four</div>
+        </div>
+      </div>
+    </div>
+    <div class="definition-box" style="border-left-color: #1a5c9a; background-color: #eaf4ff;">
+      <div class="term" style="color: #1a5c9a;">/iː/ — Long High Front Vowel</div>
+      <div class="def">Tongue HIGH and FRONT, lips SPREAD. The 'ee' sound.</div>
+      <div class="example">💡 see /siː/, sheep /ʃiːp/, key /kiː/, feet /fiːt/, she /ʃiː/</div>
+    </div>
+    <div class="definition-box" style="border-left-color: #c0392b; background-color: #fff5f5;">
+      <div class="term" style="color: #c0392b;">/ɑː/ — Long Low Back Vowel</div>
+      <div class="def">Tongue LOW and BACK, mouth wide open, lips unrounded.</div>
+      <div class="example">💡 car /kɑː/, far /fɑː/, park /pɑːk/, heart /hɑːt/, bath /bɑːθ/ (British English)</div>
+    </div>
+    <div class="definition-box" style="border-left-color: #7b2d8b; background-color: #fdf0ff;">
+      <div class="term" style="color: #7b2d8b;">/ɔː/ — Long Mid Back Rounded Vowel</div>
+      <div class="def">Tongue MID and BACK, lips ROUNDED.</div>
+      <div class="example">💡 more /mɔː/, law /lɔː/, court /kɔːt/, four /fɔː/, war /wɔː/</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s5">
+    <div class="slide-header">
+      <div class="tag">Long Vowels 4-5</div>
+      <h2>The 5 Long Vowels of English (Part 2)</h2>
+    </div>
+    <div class="vowel-chart">
+      <div class="vowel-row">
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/uː/</div>
+          <div class="vowel-example">moon, blue, food</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/ɜː/</div>
+          <div class="vowel-example">bird, word, her</div>
+        </div>
+      </div>
+    </div>
+    <div class="definition-box" style="border-left-color: #1a3a5c; background-color: #eaf4ff;">
+      <div class="term" style="color: #1a3a5c;">/uː/ — Long High Back Rounded Vowel</div>
+      <div class="def">Tongue HIGH and BACK, lips ROUNDED and pushed forward. The long 'oo' sound.</div>
+      <div class="example">💡 moon /muːn/, blue /bluː/, food /fuːd/, school /skuːl/, you /juː/</div>
+    </div>
+    <div class="definition-box">
+      <div class="term">/ɜː/ — Long Mid Central Vowel</div>
+      <div class="def">Tongue in the MIDDLE — neither front nor back, neither high nor low. Lips unrounded. This is the vowel in 'bird', 'word', 'her'.</div>
+      <div class="example">💡 bird /bɜːd/, word /wɜːd/, her /hɜː/, nurse /nɜːs/, heard /hɜːd/</div>
+    </div>
+    <div class="info-note">💡 /ɜː/ is special — it appears in many spellings: 'er' (her), 'ir' (bird), 'ur' (nurse), 'ear' (heard), 'or' (word). But always the SAME sound!</div>
+  </div>
+
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <div class="tag">What are Diphthongs?</div>
+      <h2>Diphthongs — Gliding Vowels 🎢</h2>
+    </div>
+    <div class="definition-box" style="border-left-color: var(--gold); background-color: #fffbe6;">
+      <div class="term" style="color: #7a5a00;">🎢 Diphthong</div>
+      <div class="def">A DIPHTHONG is a vowel sound that MOVES — it starts in one vowel position and GLIDES toward another. You say TWO vowel positions in one smooth movement.</div>
+      <div class="example">💡 Say 'day' slowly: deeee-ay! You start at /e/ and GLIDE to /ɪ/. This glide is the diphthong /eɪ/.</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Simple (Monophthong)</th>
+        <th>Diphthong</th>
+      </tr>
+      <tr>
+        <td>One fixed vowel position</td>
+        <td>Two positions — starts here, moves there</td>
+      </tr>
+      <tr>
+        <td>/e/ in 'bed' — stays</td>
+        <td>/eɪ/ in 'day' — starts at /e/, glides to /ɪ/</td>
+      </tr>
+      <tr>
+        <td>/ɪ/ in 'sit' — stays</td>
+        <td>/ɪə/ in 'here' — starts at /ɪ/, glides to /ə/</td>
+      </tr>
+    </table>
+    <div class="info-note">🎢 MONO-phthong = ONE position (Greek: monos = one). DI-phthong = TWO positions (Greek: di = two). English has EIGHT diphthongs!</div>
+  </div>
+
+  <div class="slide slide-content" id="s7">
+    <div class="slide-header">
+      <div class="tag">Closing Diphthongs</div>
+      <h2>Closing Diphthongs — Moving TOWARD /ɪ/ or /ʊ/</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">⬆️ Closing Diphthongs</div>
+      <div class="def">These diphthongs CLOSE — the tongue moves UP toward a high vowel (/ɪ/ or /ʊ/) from a lower starting position.</div>
+      <div class="example">💡 They are called 'closing' because the mouth CLOSES slightly as you glide up.</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Diphthong</th>
+        <th>Example words</th>
+        <th>Movement</th>
+      </tr>
+      <tr>
+        <td>/eɪ/</td>
+        <td>day, rain, cake, make</td>
+        <td>/e/ → /ɪ/</td>
+      </tr>
+      <tr>
+        <td>/aɪ/</td>
+        <td>my, time, night, high</td>
+        <td>/a/ → /ɪ/</td>
+      </tr>
+      <tr>
+        <td>/ɔɪ/</td>
+        <td>boy, coin, noise</td>
+        <td>/ɔ/ → /ɪ/</td>
+      </tr>
+      <tr>
+        <td>/əʊ/</td>
+        <td>go, home, boat, know</td>
+        <td>/ə/ → /ʊ/</td>
+      </tr>
+      <tr>
+        <td>/aʊ/</td>
+        <td>now, out, town, house</td>
+        <td>/a/ → /ʊ/</td>
+      </tr>
+    </table>
+    <div class="info-note">💡 /eɪ/ is in 'day', 'cake', 'rain', 'eight', 'they' — many different spellings, always /eɪ/!</div>
+  </div>
+
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <div class="tag">Centering Diphthongs</div>
+      <h2>Centering Diphthongs — Moving TOWARD /ə/</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">➡️ Centering Diphthongs</div>
+      <div class="def">These diphthongs move TOWARD the center of the mouth — they glide toward the SCHWA /ə/. They are called 'centering' because the tongue moves toward a central position.</div>
+      <div class="example">💡 'here' /hɪə/ — starts at /ɪ/ and glides toward the schwa /ə/.</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Diphthong</th>
+        <th>Example words</th>
+        <th>Movement</th>
+      </tr>
+      <tr>
+        <td>/ɪə/</td>
+        <td>here, ear, near, beard</td>
+        <td>/ɪ/ → /ə/</td>
+      </tr>
+      <tr>
+        <td>/eə/</td>
+        <td>air, there, care, where</td>
+        <td>/e/ → /ə/</td>
+      </tr>
+      <tr>
+        <td>/ʊə/</td>
+        <td>tour, pure, sure (old-fashioned in some accents)</td>
+        <td>/ʊ/ → /ə/</td>
+      </tr>
+    </table>
+    <div class="info-note">💡 In modern British English, /ʊə/ is becoming rare — many speakers now use /ɔː/ instead. 'tour' = /tʊə/ (traditional) or /tɔː/ (modern).</div>
+  </div>
+
+  <div class="slide slide-content" id="s9">
+    <div class="slide-header">
+      <div class="tag">Summary</div>
+      <h2>All Long Vowels & Diphthongs — Quick Reference</h2>
+    </div>
+    <div class="vowel-chart">
+      <div class="vowel-row">
+        <h3 style="width: 100%; text-align: center; color: var(--primary); margin-bottom: 12px;">5 Long Vowels:</h3>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/iː/</div>
+          <div class="vowel-example">see</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/ɑː/</div>
+          <div class="vowel-example">car</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/ɔː/</div>
+          <div class="vowel-example">more</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/uː/</div>
+          <div class="vowel-example">moon</div>
+        </div>
+        <div class="vowel-card long">
+          <div class="vowel-symbol">/ɜː/</div>
+          <div class="vowel-example">bird</div>
+        </div>
+      </div>
+      <div class="vowel-row">
+        <h3 style="width: 100%; text-align: center; color: var(--primary); margin-bottom: 12px; margin-top: 16px;">Closing Diphthongs:</h3>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/eɪ/</div>
+          <div class="vowel-example">day</div>
+        </div>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/aɪ/</div>
+          <div class="vowel-example">my</div>
+        </div>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/ɔɪ/</div>
+          <div class="vowel-example">boy</div>
+        </div>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/əʊ/</div>
+          <div class="vowel-example">go</div>
+        </div>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/aʊ/</div>
+          <div class="vowel-example">now</div>
+        </div>
+      </div>
+      <div class="vowel-row">
+        <h3 style="width: 100%; text-align: center; color: var(--primary); margin-bottom: 12px; margin-top: 16px;">Centering Diphthongs:</h3>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/ɪə/</div>
+          <div class="vowel-example">here</div>
+        </div>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/eə/</div>
+          <div class="vowel-example">air</div>
+        </div>
+        <div class="vowel-card diph">
+          <div class="vowel-symbol">/ʊə/</div>
+          <div class="vowel-example">tour</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-note">📊 Total English vowel sounds: 7 short + 5 long + 8 diphthongs = approximately 20 vowel phonemes!</div>
+  </div>
+
+  <div class="slide slide-content" id="s10">
+    <div class="slide-header">
+      <div class="tag">Practice</div>
+      <h2>Vowel Length Practice 🎯</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">👂 Listen for the difference!</div>
+      <div class="mot-body">These minimal pairs differ ONLY in vowel length (or diphthong vs simple vowel). Train your ear to hear the difference — this is crucial for understanding English!</div>
+    </div>
+    <div class="pair-container">
+      <div class="pair-box">ship /ɪ/ ↔ sheep /iː/</div>
+      <div class="pair-box">full /ʊ/ ↔ fool /uː/</div>
+      <div class="pair-box">cod /ɒ/ ↔ cord /ɔː/</div>
+      <div class="pair-box">bad /æ/ ↔ bird /ɜː/</div>
+      <div class="pair-box">day /eɪ/ ↔ die /aɪ/</div>
+      <div class="pair-box">boat /əʊ/ ↔ bout /aʊ/</div>
+    </div>
+    <div class="card">🎯 Practice tip: Use Cambridge Dictionary to hear each word. Type the word, click the speaker icon 🔊, and listen carefully to the vowel quality and length.</div>
+  </div>
+
+  <div class="slide slide-content" id="s11">
+    <div class="slide-header">
+      <div class="tag">Resources</div>
+      <h2>Learn More</h2>
+    </div>
+    <div class="resource-section">
+      <h3>Practice long vowels and diphthongs:</h3>
+      <div class="resource-links">
+        <a class="resource-link" href="https://dictionary.cambridge.org" target="_blank">🔊 Cambridge Dictionary — hear every word with IPA</a>
+        <a class="resource-link" href="https://www.ipachart.com" target="_blank">🗺️ Interactive IPA Vowel Chart</a>
+        <a class="resource-link" href="https://www.bbc.co.uk/learningenglish/english/features/pronunciation" target="_blank">🎵 BBC Pronunciation — vowel sounds</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide completion-slide" id="s12">
+    <div class="comp-icon">🎼</div>
+    <h2>Topic 9 Complete!</h2>
+    <p>You have now learned ALL English vowels: 7 short + 5 long + 8 diphthongs = about 20 vowel phonemes. This is a huge achievement!</p>
+    <div class="comp-badges">
+      <div class="comp-badge">✅ 5 Long Vowels /iː ɑː ɔː uː ɜː/</div>
+      <div class="comp-badge">✅ 5 Closing Diphthongs</div>
+      <div class="comp-badge">✅ 3 Centering Diphthongs</div>
+      <div class="comp-badge">✅ Full English Vowel System</div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+
+<script>
+const QUIZZES = [
+  {
+    afterSlide: 3,
+    badge: "❓ Quiz 1 of 4",
+    question: "The word 'seat' has a LONG vowel /iː/ and 'sit' has a SHORT vowel /ɪ/. What does the ː symbol in /iː/ indicate?",
+    options: ["The vowel is stressed", "The vowel is made with rounded lips", "The vowel is longer in duration", "The vowel is made at the back of the mouth"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! The ː symbol is the IPA LENGTH MARK. It means the vowel is held for a longer duration. /iː/ (seat) is approximately twice as long as /ɪ/ (sit).",
+    feedbackWrong: "❌ The ː symbol in IPA is the LENGTH MARK — it means the vowel is held longer. /iː/ (seat) is longer than /ɪ/ (sit). Both are made in a similar position in the mouth, but the long version is held for more time."
+  },
+  {
+    afterSlide: 5,
+    badge: "❓ Quiz 2 of 4",
+    question: "The vowel /ɜː/ appears in 'bird', 'word', 'her', and 'nurse'. What is SPECIAL about this vowel?",
+    options: ["It is always spelled with the letter 'e'", "It is made with rounded lips like /uː/", "It has MANY different spellings but is always ONE sound /ɜː/", "It only appears at the start of words"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! /ɜː/ is special because it is spelled in many different ways — 'er' (her), 'ir' (bird), 'ur' (nurse), 'or' (word), 'ear' (heard) — but they all represent the SAME vowel sound /ɜː/.",
+    feedbackWrong: "❌ /ɜː/ is special because the SAME sound is spelled in MANY different ways: 'er' (her), 'ir' (bird), 'ur' (nurse), 'or' (word). This is a perfect example of why IPA is so useful!"
+  },
+  {
+    afterSlide: 6,
+    badge: "❓ Quiz 3 of 4",
+    question: "What makes a DIPHTHONG different from a simple (monophthong) vowel?",
+    options: ["A diphthong is always longer than a monophthong", "A diphthong is two SEPARATE syllables", "A diphthong MOVES — the tongue glides from one vowel position to another in one syllable", "A diphthong is always rounded"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! A diphthong is a vowel sound that MOVES. The tongue starts at one position and glides toward another in the same syllable. For example, /eɪ/ in 'day' starts at /e/ and glides toward /ɪ/.",
+    feedbackWrong: "❌ A diphthong is different from a simple vowel because it MOVES — the tongue glides from one position to another in one syllable. 'Day' /eɪ/ starts at /e/ and glides toward /ɪ/. It's one syllable, but the vowel quality changes."
+  },
+  {
+    afterSlide: 9,
+    badge: "❓ Quiz 4 of 4",
+    question: "Which diphthong is in the word 'boy'?",
+    options: ["/eɪ/ as in 'day'", "/aɪ/ as in 'my'", "/ɔɪ/ as in 'boy'", "/əʊ/ as in 'go'"],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! 'boy' = /bɔɪ/. The diphthong /ɔɪ/ starts at a back rounded vowel /ɔ/ and glides up toward /ɪ/. Other words: 'coin', 'noise', 'choice', 'voice', 'oil'.",
+    feedbackWrong: "❌ 'boy' contains the diphthong /ɔɪ/ — it starts from a back rounded vowel position and glides up. /ɔɪ/ is also in 'coin', 'noise', 'choice', and 'oil'."
+  }
+];
+
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('s' + n);
+  if (t) t.classList.add('active');
+  document.getElementById('btn-prev').disabled = (n <= 1);
+  document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES);
+  updateDots();
+  updateProgress();
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide));
+}
+
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%';
+  document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES;
+}
+
+function nextSlide() {
+  const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide);
+  if (idx !== -1) {
+    activeQuiz = quizQueue[idx];
+    openQuiz(activeQuiz);
+    return;
+  }
+  if (currentSlide < TOTAL_SLIDES) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 1) {
+    currentSlide--;
+    showSlide(currentSlide);
+  }
+}
+
+function goToSlide(n) {
+  if (n >= 1 && n <= TOTAL_SLIDES) {
+    currentSlide = n;
+    showSlide(currentSlide);
+  }
+}
+
+function openQuiz(quiz) {
+  quizAnswered = false;
+  document.getElementById('q-badge').textContent = quiz.badge;
+  document.getElementById('q-question').textContent = quiz.question;
+  document.getElementById('q-feedback').className = 'quiz-feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-continue').style.display = 'none';
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  ['A', 'B', 'C', 'D'].forEach((l, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>';
+    btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+
+function selectAnswer(chosen, correct, fbC, fbW) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('q-feedback');
+  document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong');
+  if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct');
+  fb.textContent = chosen === correct ? fbC : fbW;
+  fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('q-continue').style.display = 'inline-block';
+  const idx = quizQueue.findIndex(q => q === activeQuiz);
+  if (idx !== -1) quizQueue.splice(idx, 1);
+}
+
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+  if (currentSlide < TOTAL_SLIDES) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function openFullPage() {
+  window.open(window.location.href, '_blank');
+}
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('quiz-overlay').classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    nextSlide();
+  }
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    prevSlide();
+  }
+});
+
+function buildDots() {
+  const row = document.getElementById('dot-row');
+  row.innerHTML = '';
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    row.appendChild(d);
+  }
+}
+
+buildDots();
+showSlide(1);
+</script>
+</body>
+</html>

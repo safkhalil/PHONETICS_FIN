@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 8: The Vowel Chart & Short Vowels</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  /* TITLE SLIDE */
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  /* CONTENT SLIDES */
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  /* DEFINITION BOX */
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  /* MOTIVATION BOX */
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  /* BRANCHES GRID */
+  .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; margin: 20px 0; }
+  .branch-card { border-radius: 14px; padding: 24px 16px; text-align: center; color: #fff; transition: transform 0.2s; }
+  .branch-card:hover { transform: translateY(-5px); }
+  .branch-card.art { background: linear-gradient(135deg,#1a3a5c,#2460a0); }
+  .branch-card.aco { background: linear-gradient(135deg,#7b2d8b,#b044c8); }
+  .branch-card.aud { background: linear-gradient(135deg,#c0392b,#e74c3c); }
+  .branch-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .branch-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .branch-card p { font-size: .85rem; opacity: .9; line-height: 1.4; }
+  .branch-card .focus { margin-top: 10px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 8px; font-size: .75rem; }
+  /* COMPARISON TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  /* NOTATION CARDS */
+  .notation-row { display: flex; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .notation-card { flex: 1; min-width: 200px; border-radius: 14px; padding: 18px; text-align: center; }
+  .notation-card.phone { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .notation-card.phoneme { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .notation-card.allophone { background: #f0fff4; border: 2px solid #90e0a0; }
+  .notation-card .symbol { font-size: 2rem; font-weight: 700; margin: 10px 0; }
+  /* MINIMAL PAIR BOXES */
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .diff-letter { color: var(--accent); font-weight: 900; }
+  /* FEATURE GRID */
+  .feature-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .feature-cell { background: #fff; border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .feature-header { font-size: 1.1rem; font-weight: 700; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; text-align: center; }
+  /* SUMMARY GRID */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .summary-card { background: #fff; border-radius: 12px; padding: 18px; border-top: 4px solid; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  /* INFO NOTE */
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  /* BRACKET DEMO */
+  .bracket-demo { display: flex; gap: 24px; justify-content: center; width: 100%; margin-bottom: 20px; flex-wrap: wrap; }
+  .bracket-item { text-align: center; flex: 1; min-width: 150px; }
+  .bracket-symbol { font-size: 2.8rem; font-weight: 700; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .sq { background: #eaf4ff; color: #1a5c9a; border: 2px solid #aad4f5; }
+  .sl { background: #fff0f5; color: #9a1a4a; border: 2px solid #f5a0c0; }
+  /* ICON GRID */
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .icon-card { background: #fff; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.07); border-top: 4px solid var(--primary); }
+  .icon-card .ic-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .icon-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .icon-card p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+  /* ARTICULATOR ROWS */
+  .articulators-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .art-box { flex: 1; min-width: 180px; border-radius: 12px; padding: 16px; }
+  .art-box.active { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .art-box.passive { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .art-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .art-box ul { padding-left: 18px; font-size: .9rem; line-height: 1.7; }
+  /* PLACE TABLE */
+  .place-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .place-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid var(--primary); }
+  .place-card .pl-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .place-card .pl-where { font-size: .85rem; color: var(--muted); margin-bottom: 6px; font-style: italic; }
+  .place-card .pl-sounds { font-size: 1.1rem; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+  /* MANNER CARDS */
+  .manner-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .manner-card { flex: 1; min-width: 180px; border-radius: 14px; padding: 20px; text-align: center; color: #fff; }
+  .manner-card.stop { background: linear-gradient(135deg, #1a3a5c, #2460a0); }
+  .manner-card.fric { background: linear-gradient(135deg, #7b2d8b, #b044c8); }
+  .manner-card.appr { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .manner-card.nasal { background: linear-gradient(135deg, #1a7a40, #2ecc71); }
+  .manner-card.affr { background: linear-gradient(135deg, #c07a00, #f0a500); }
+  .manner-card .m-icon { font-size: 2rem; margin-bottom: 8px; }
+  .manner-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .manner-card p { font-size: .82rem; opacity: .9; line-height: 1.3; }
+  .manner-card .sounds { margin-top: 8px; background: rgba(255,255,255,.2); border-radius: 6px; padding: 4px 8px; font-size: .78rem; letter-spacing: 2px; }
+  /* VOWEL CHART */
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  /* STRESS DIAGRAM */
+  .stress-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .stress-word { background: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; min-width: 140px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .stress-word .syl-stressed { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+  .stress-word .syl-unstressed { font-size: 1.1rem; color: var(--muted); }
+  .stress-word .sw-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  /* RESOURCES SECTION */
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  /* COMPLETION SLIDE */
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  /* QUIZ OVERLAY */
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  /* BOTTOM NAV */
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .place-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 8: English Vowels — The Vowel Chart & Short Vowels</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+  <div class="slide slide-title" id="s1">
+    <div class="wave-emoji">🎵</div>
+    <div class="big-title">English Vowels: The Vowel Chart & Short Vowels</div>
+    <div class="subtitle">Topic 8 — English Phonetics Course</div>
+    <div class="badge">🎵 Vowel Chart · /ɪ/ sit · /e/ bed · /æ/ cat · /ʌ/ cup · /ɒ/ top · /ʊ/ book · /ə/ about</div>
+  </div>
+
+  <div class="slide slide-content" id="s2">
+    <div class="slide-header">
+      <div class="tag">Motivation</div>
+      <h2>Why does this lesson matter?</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🌟 Why does this lesson matter?</div>
+      <div class="mot-body">English has only 5 vowel LETTERS (a, e, i, o, u) but about 20 vowel SOUNDS! Most pronunciation problems come from vowels, not consonants. Learning the vowel chart and short vowels will help you distinguish words like 'sit' vs 'seat', 'bed' vs 'bad', and 'cup' vs 'cap'.</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s3">
+    <div class="slide-header">
+      <div class="tag">What is a Vowel?</div>
+      <h2>Vowels vs Consonants</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🎵 Vowel</div>
+      <div class="def">A sound where the air flows FREELY through the mouth with no blocking or squeezing. The shape of the mouth (tongue height and position, lip rounding) determines which vowel you produce.</div>
+      <div class="example">💡 Say 'ahhh' — feel how freely the air flows. Now say 'sss' — feel the restriction. 'ahhh' is a vowel; 'sss' is a consonant!</div>
+    </div>
+    <div class="notation-row">
+      <div class="notation-card phone">
+        <h4 style="font-size: 1.1rem; color: #1a5c9a; margin-bottom: 8px;">VOWELS</h4>
+        <p>Air flows freely. No blocking. Described by: tongue height (high/mid/low), tongue position (front/back), lip shape (rounded/unrounded)</p>
+      </div>
+      <div class="notation-card phoneme">
+        <h4 style="font-size: 1.1rem; color: #9a1a4a; margin-bottom: 8px;">CONSONANTS</h4>
+        <p>Air is blocked or restricted. Described by: voicing, place of articulation, manner of articulation</p>
+      </div>
+    </div>
+    <div class="info-note">💡 In every syllable, the VOWEL is the core — the 'nucleus'. You CANNOT have a syllable without a vowel (or vowel-like sound).</div>
+  </div>
+
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <div class="tag">The Vowel Chart</div>
+      <h2>The International Vowel Chart (Simplified)</h2>
+    </div>
+    <div class="card">The Vowel Chart is a map of the MOUTH. It shows where the tongue is positioned when you make each vowel:</div>
+    <div class="card">
+      <h3 style="color: var(--primary); margin-bottom: 16px;">Tongue Position on the Vowel Chart:</h3>
+      <table class="compare-table" style="margin-bottom: 16px;">
+        <tr>
+          <th>FRONT (tongue forward)</th>
+          <th>CENTER</th>
+          <th>BACK (tongue back)</th>
+        </tr>
+        <tr>
+          <td><strong>HIGH:</strong> /iː ɪ/</td>
+          <td style="text-align: center;">—</td>
+          <td><strong>HIGH:</strong> /uː ʊ/</td>
+        </tr>
+        <tr>
+          <td><strong>MID:</strong> /e/</td>
+          <td style="text-align: center;">/ə/ /ɜː/</td>
+          <td><strong>MID:</strong> /ɔː/</td>
+        </tr>
+        <tr>
+          <td><strong>LOW:</strong> /æ/</td>
+          <td style="text-align: center;">/ʌ/</td>
+          <td><strong>LOW:</strong> /ɑː ɒ/</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">🗺️ FRONT = tongue pushed toward the front of the mouth. BACK = tongue pulled to the back. HIGH = tongue raised up. LOW = tongue lowered.</div>
+  </div>
+
+  <div class="slide slide-content" id="s5">
+    <div class="slide-header">
+      <div class="tag">Cardinal Vowels</div>
+      <h2>Primary Cardinal Vowels — Reference Points</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🎯 What are Cardinal Vowels?</div>
+      <div class="mot-body">Cardinal vowels are REFERENCE POINTS — like compass directions for vowels. Linguists use them to describe and compare vowels in different languages. There are 8 primary cardinal vowels.</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Number & Symbol</th>
+        <th>Tongue Position</th>
+        <th>Example in a Language</th>
+      </tr>
+      <tr>
+        <td>CV1 /i/</td>
+        <td>High front unrounded</td>
+        <td>'see' in English</td>
+      </tr>
+      <tr>
+        <td>CV2 /e/</td>
+        <td>High-mid front</td>
+        <td>similar to French 'été'</td>
+      </tr>
+      <tr>
+        <td>CV3 /ɛ/</td>
+        <td>Low-mid front</td>
+        <td>'bed' in English</td>
+      </tr>
+      <tr>
+        <td>CV4 /a/</td>
+        <td>Low front</td>
+        <td>'car' in some accents</td>
+      </tr>
+      <tr>
+        <td>CV5 /ɑ/</td>
+        <td>Low back</td>
+        <td>'father' in English</td>
+      </tr>
+      <tr>
+        <td>CV6 /ɔ/</td>
+        <td>Low-mid back rounded</td>
+        <td>'more' in English</td>
+      </tr>
+      <tr>
+        <td>CV7 /o/</td>
+        <td>High-mid back rounded</td>
+        <td>similar to Spanish 'no'</td>
+      </tr>
+      <tr>
+        <td>CV8 /u/</td>
+        <td>High back rounded</td>
+        <td>'moon' in English</td>
+      </tr>
+    </table>
+    <div class="info-note">💡 English vowels are compared to these 8 reference points. They help phoneticians describe where English vowels sit on the vowel chart.</div>
+  </div>
+
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <div class="tag">Short Vowels Overview</div>
+      <h2>The 7 English Short Vowels</h2>
+    </div>
+    <div class="card">English has 7 short vowel phonemes. They are typically shorter in duration than long vowels.</div>
+    <div class="vowel-chart">
+      <div class="vowel-row">
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/ɪ/</div>
+          <div class="vowel-example">sit</div>
+        </div>
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/e/</div>
+          <div class="vowel-example">bed</div>
+        </div>
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/æ/</div>
+          <div class="vowel-example">cat</div>
+        </div>
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/ʌ/</div>
+          <div class="vowel-example">cup</div>
+        </div>
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/ɒ/</div>
+          <div class="vowel-example">top</div>
+        </div>
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/ʊ/</div>
+          <div class="vowel-example">book</div>
+        </div>
+        <div class="vowel-card short">
+          <div class="vowel-symbol">/ə/</div>
+          <div class="vowel-example">about</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-note">💡 The SCHWA /ə/ is the MOST COMMON vowel sound in English. It appears in UNSTRESSED syllables only — 'about', 'the', 'banana', 'professor'.</div>
+  </div>
+
+  <div class="slide slide-content" id="s7">
+    <div class="slide-header">
+      <div class="tag">Short Vowels 1-3</div>
+      <h2>Close-up: /ɪ/, /e/, and /æ/</h2>
+    </div>
+    <div class="definition-box" style="border-left-color: #1a5c9a; background-color: #eaf4ff;">
+      <div class="term" style="color: #1a5c9a;">/ɪ/ — Short High Front Vowel</div>
+      <div class="def">Tongue HIGH and FRONT, lips spread slightly. SHORTER and more relaxed than /iː/.</div>
+      <div class="example">💡 sit /sɪt/ · big /bɪɡ/ · fish /fɪʃ/ · him /hɪm/ · this /ðɪs/</div>
+    </div>
+    <div class="definition-box">
+      <div class="term">/e/ — Short Mid Front Vowel</div>
+      <div class="def">Tongue MID and FRONT, lips slightly spread. As in 'bed'.</div>
+      <div class="example">💡 bed /bed/ · pen /pen/ · red /red/ · ten /ten/ · dress /dres/</div>
+    </div>
+    <div class="definition-box" style="border-left-color: var(--green); background-color: #f0fff4;">
+      <div class="term" style="color: #1a7a40;">/æ/ — Short Low Front Vowel</div>
+      <div class="def">Tongue LOW and FRONT, mouth relatively open. Often called the 'flat a'.</div>
+      <div class="example">💡 cat /kæt/ · man /mæn/ · bag /bæɡ/ · hand /hænd/ · black /blæk/</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <div class="tag">Short Vowels 4-6</div>
+      <h2>Close-up: /ʌ/, /ɒ/, and /ʊ/</h2>
+    </div>
+    <div class="definition-box" style="border-left-color: #7b2d8b; background-color: #fdf0ff;">
+      <div class="term" style="color: #7b2d8b;">/ʌ/ — Short Mid Central Vowel</div>
+      <div class="def">Tongue MID and in the CENTER of the mouth. Lips neutral.</div>
+      <div class="example">💡 cup /kʌp/ · sun /sʌn/ · love /lʌv/ · but /bʌt/ · money /mʌni/</div>
+    </div>
+    <div class="definition-box" style="border-left-color: #c0392b; background-color: #fff5f5;">
+      <div class="term" style="color: #c0392b;">/ɒ/ — Short Low Back Vowel</div>
+      <div class="def">Tongue LOW and BACK, lips slightly rounded. As in 'top'.</div>
+      <div class="example">💡 top /tɒp/ · dog /dɒɡ/ · hot /hɒt/ · on /ɒn/ · not /nɒt/</div>
+    </div>
+    <div class="definition-box" style="border-left-color: var(--gold); background-color: #fffbe6;">
+      <div class="term" style="color: #7a5a00;">/ʊ/ — Short High Back Vowel</div>
+      <div class="def">Tongue HIGH and BACK, lips lightly rounded. Shorter and more relaxed than /uː/.</div>
+      <div class="example">💡 book /bʊk/ · put /pʊt/ · good /ɡʊd/ · look /lʊk/ · foot /fʊt/</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s9">
+    <div class="slide-header">
+      <div class="tag">The Schwa</div>
+      <h2>The Schwa /ə/ — The Star of English Vowels ⭐</h2>
+    </div>
+    <div class="definition-box" style="border-left-color: #1a3a5c; background-color: #eaf4ff;">
+      <div class="term" style="color: #1a3a5c;">⭐ /ə/ — The Schwa</div>
+      <div class="def">The most common vowel in English! The tongue is in the CENTRE of the mouth — neutral position. Lips are relaxed. It ONLY appears in UNSTRESSED syllables.</div>
+      <div class="example">💡 'about' = /əˈbaʊt/ · 'the' = /ðə/ · 'banana' = /bəˈnɑːnə/ · 'teacher' = /ˈtiːtʃə/</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Word</th>
+        <th>IPA Transcription — notice the schwa!</th>
+      </tr>
+      <tr>
+        <td>about</td>
+        <td>/əˈbaʊt/ — first syllable</td>
+      </tr>
+      <tr>
+        <td>banana</td>
+        <td>/bəˈnɑːnə/ — first AND last syllables</td>
+      </tr>
+      <tr>
+        <td>teacher</td>
+        <td>/ˈtiːtʃə/ — last syllable</td>
+      </tr>
+      <tr>
+        <td>of</td>
+        <td>/əv/ — the whole word!</td>
+      </tr>
+      <tr>
+        <td>the</td>
+        <td>/ðə/ — the whole word (unstressed form)</td>
+      </tr>
+    </table>
+    <div class="info-note">⭐ In natural spoken English, about 10–15% of ALL vowel sounds are schwa! Mastering the schwa will make your English sound much more natural.</div>
+  </div>
+
+  <div class="slide slide-content" id="s10">
+    <div class="slide-header">
+      <div class="tag">Practice</div>
+      <h2>Minimal Pair Vowel Practice 🎯</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">👂 Listen and Compare</div>
+      <div class="mot-body">These minimal pairs differ by ONLY the vowel sound. Can you hear (and say!) the difference?</div>
+    </div>
+    <div class="pair-container">
+      <div class="pair-box">sit /ɪ/ ↔ seat /iː/</div>
+      <div class="pair-box">bed /e/ ↔ bad /æ/</div>
+      <div class="pair-box">cat /æ/ ↔ cut /ʌ/</div>
+      <div class="pair-box">top /ɒ/ ↔ tape /eɪ/</div>
+      <div class="pair-box">book /ʊ/ ↔ boot /uː/</div>
+      <div class="pair-box">man /æ/ ↔ men /e/</div>
+    </div>
+    <div class="card">💡 Try this: put your hand under your chin. For LOW vowels (/æ/ /ɒ/ /ʌ/), your jaw drops more. For HIGH vowels (/ɪ/ /ʊ/), your jaw stays up. This physical feedback helps you feel the difference!</div>
+  </div>
+
+  <div class="slide slide-content" id="s11">
+    <div class="slide-header">
+      <div class="tag">Resources</div>
+      <h2>Learn More</h2>
+    </div>
+    <div class="resource-section">
+      <h3>Practice English vowels online:</h3>
+      <div class="resource-links">
+        <a class="resource-link" href="https://www.ipachart.com" target="_blank">🗺️ Interactive Vowel Chart (with audio)</a>
+        <a class="resource-link" href="https://dictionary.cambridge.org" target="_blank">🔊 Cambridge Dictionary — hear vowel sounds in real words</a>
+        <a class="resource-link" href="https://www.bbc.co.uk/learningenglish/english/features/pronunciation" target="_blank">🎵 BBC Learning English — vowel practice</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide completion-slide" id="s12">
+    <div class="comp-icon">🎵</div>
+    <h2>Topic 8 Complete!</h2>
+    <p>You have learned all 7 English short vowels and the vowel chart. Next lesson: long vowels and diphthongs!</p>
+    <div class="comp-badges">
+      <div class="comp-badge">✅ The Vowel Chart</div>
+      <div class="comp-badge">✅ Cardinal Vowels (reference points)</div>
+      <div class="comp-badge">✅ 6 Short Vowels /ɪ e æ ʌ ɒ ʊ/</div>
+      <div class="comp-badge">✅ The Schwa /ə/ — the most common vowel</div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+
+<script>
+const QUIZZES = [
+  {
+    afterSlide: 3,
+    badge: "❓ Quiz 1 of 4",
+    question: "What is the key difference between VOWELS and CONSONANTS in terms of airflow?",
+    options: [
+      "Vowels are always louder than consonants",
+      "Vowels have free airflow; consonants block or restrict the airflow",
+      "Vowels are always longer than consonants",
+      "Vowels are only made by the lips"
+    ],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! In vowels, air flows FREELY through the mouth with no blocking or squeezing. In consonants, the airflow is either completely blocked (stops) or restricted in some way.",
+    feedbackWrong: "❌ The key difference is AIRFLOW: vowels have FREE airflow — nothing blocks or squeezes the air. Consonants involve blocking or restricting the airflow in various ways."
+  },
+  {
+    afterSlide: 5,
+    badge: "❓ Quiz 2 of 4",
+    question: "The vowel /ɪ/ in 'sit' and the vowel /iː/ in 'seat' are different phonemes. What is the MAIN difference between them?",
+    options: [
+      "They are made at completely different places in the mouth",
+      "They involve different lip rounding",
+      "/ɪ/ is shorter and more relaxed; /iː/ is longer and more tense",
+      "They are actually the same sound"
+    ],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! /ɪ/ is a SHORT, RELAXED vowel. /iː/ is a LONG, TENSE vowel. The tongue position is similar (high front) but /ɪ/ is lower and more central than /iː/. This difference creates the 'sit' vs 'seat' distinction.",
+    feedbackWrong: "❌ /ɪ/ (sit) is SHORT and RELAXED — the tongue is not as high or front as for /iː/ (seat). /iː/ is LONG and TENSE. This is why 'sit' and 'seat' sound different even though the vowel positions seem similar."
+  },
+  {
+    afterSlide: 9,
+    badge: "❓ Quiz 3 of 4",
+    question: "The schwa /ə/ is called the most common vowel in English. Where does it ALWAYS appear?",
+    options: [
+      "Only in stressed syllables",
+      "Only in one-syllable words",
+      "Only in UNSTRESSED syllables",
+      "At the beginning of words only"
+    ],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! The schwa /ə/ ONLY appears in UNSTRESSED syllables — it is the reduced, neutral vowel of unstressed positions. For example: 'a-BOUT' /əˈbaʊt/ — the first syllable 'a' is unstressed, so it becomes /ə/.",
+    feedbackWrong: "❌ The schwa /ə/ ONLY appears in UNSTRESSED syllables. It is the 'weak' vowel of English. In 'banana' /bəˈnɑːnə/, the stressed syllable has the strong vowel /ɑː/, while the unstressed syllables have /ə/."
+  },
+  {
+    afterSlide: 10,
+    badge: "❓ Quiz 4 of 4",
+    question: "Which short vowel is in the word 'cat'?",
+    options: [
+      "/e/ as in 'bed'",
+      "/ʌ/ as in 'cup'",
+      "/æ/ the low front vowel",
+      "/ɪ/ as in 'sit'"
+    ],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! 'cat' = /kæt/. The vowel /æ/ is the low front vowel — your jaw drops quite low when you say it. Compare: 'cat' /kæt/ vs 'cut' /kʌt/ vs 'kit' /kɪt/ — three different vowels!",
+    feedbackWrong: "❌ 'cat' uses the /æ/ vowel — the low front vowel. Your jaw drops quite low. In IPA: /kæt/. Compare: 'cat' /kæt/ (low front /æ/) vs 'cut' /kʌt/ (mid central /ʌ/) vs 'kit' /kɪt/ (high front /ɪ/)."
+  }
+];
+
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('s' + n);
+  if (t) t.classList.add('active');
+  document.getElementById('btn-prev').disabled = (n <= 1);
+  document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES);
+  updateDots();
+  updateProgress();
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide));
+}
+
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%';
+  document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES;
+}
+
+function nextSlide() {
+  const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide);
+  if (idx !== -1) {
+    activeQuiz = quizQueue[idx];
+    openQuiz(activeQuiz);
+    return;
+  }
+  if (currentSlide < TOTAL_SLIDES) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 1) {
+    currentSlide--;
+    showSlide(currentSlide);
+  }
+}
+
+function goToSlide(n) {
+  if (n >= 1 && n <= TOTAL_SLIDES) {
+    currentSlide = n;
+    showSlide(currentSlide);
+  }
+}
+
+function openQuiz(quiz) {
+  quizAnswered = false;
+  document.getElementById('q-badge').textContent = quiz.badge;
+  document.getElementById('q-question').textContent = quiz.question;
+  document.getElementById('q-feedback').className = 'quiz-feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-continue').style.display = 'none';
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  ['A', 'B', 'C', 'D'].forEach((l, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>';
+    btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+
+function selectAnswer(chosen, correct, fbC, fbW) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('q-feedback');
+  document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong');
+  if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct');
+  fb.textContent = chosen === correct ? fbC : fbW;
+  fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('q-continue').style.display = 'inline-block';
+  const idx = quizQueue.findIndex(q => q === activeQuiz);
+  if (idx !== -1) quizQueue.splice(idx, 1);
+}
+
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+  if (currentSlide < TOTAL_SLIDES) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function openFullPage() {
+  window.open(window.location.href, '_blank');
+}
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('quiz-overlay').classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    nextSlide();
+  }
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    prevSlide();
+  }
+});
+
+function buildDots() {
+  const row = document.getElementById('dot-row');
+  row.innerHTML = '';
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    row.appendChild(d);
+  }
+}
+
+buildDots();
+showSlide(1);
+</script>
+</body>
+</html>

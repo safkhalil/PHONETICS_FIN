@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 3: The IPA</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; margin: 20px 0; }
+  .branch-card { border-radius: 14px; padding: 24px 16px; text-align: center; color: #fff; transition: transform 0.2s; }
+  .branch-card:hover { transform: translateY(-5px); }
+  .branch-card.art { background: linear-gradient(135deg,#1a3a5c,#2460a0); }
+  .branch-card.aco { background: linear-gradient(135deg,#7b2d8b,#b044c8); }
+  .branch-card.aud { background: linear-gradient(135deg,#c0392b,#e74c3c); }
+  .branch-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .branch-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .branch-card p { font-size: .85rem; opacity: .9; line-height: 1.4; }
+  .branch-card .focus { margin-top: 10px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 8px; font-size: .75rem; }
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  .notation-row { display: flex; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .notation-card { flex: 1; min-width: 200px; border-radius: 14px; padding: 18px; text-align: center; }
+  .notation-card.phone { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .notation-card.phoneme { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .notation-card.allophone { background: #f0fff4; border: 2px solid #90e0a0; }
+  .notation-card .symbol { font-size: 2rem; font-weight: 700; margin: 10px 0; }
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .diff-letter { color: var(--accent); font-weight: 900; }
+  .feature-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .feature-cell { background: #fff; border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .feature-header { font-size: 1.1rem; font-weight: 700; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; text-align: center; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .summary-card { background: #fff; border-radius: 12px; padding: 18px; border-top: 4px solid; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  .bracket-demo { display: flex; gap: 24px; justify-content: center; width: 100%; margin-bottom: 20px; flex-wrap: wrap; }
+  .bracket-item { text-align: center; flex: 1; min-width: 150px; }
+  .bracket-symbol { font-size: 2.8rem; font-weight: 700; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .sq { background: #eaf4ff; color: #1a5c9a; border: 2px solid #aad4f5; }
+  .sl { background: #fff0f5; color: #9a1a4a; border: 2px solid #f5a0c0; }
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .icon-card { background: #fff; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.07); border-top: 4px solid var(--primary); }
+  .icon-card .ic-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .icon-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .icon-card p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+  .articulators-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .art-box { flex: 1; min-width: 180px; border-radius: 12px; padding: 16px; }
+  .art-box.active { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .art-box.passive { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .art-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .art-box ul { padding-left: 18px; font-size: .9rem; line-height: 1.7; }
+  .place-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .place-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid var(--primary); }
+  .place-card .pl-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .place-card .pl-where { font-size: .85rem; color: var(--muted); margin-bottom: 6px; font-style: italic; }
+  .place-card .pl-sounds { font-size: 1.1rem; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+  .manner-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .manner-card { flex: 1; min-width: 180px; border-radius: 14px; padding: 20px; text-align: center; color: #fff; }
+  .manner-card.stop { background: linear-gradient(135deg, #1a3a5c, #2460a0); }
+  .manner-card.fric { background: linear-gradient(135deg, #7b2d8b, #b044c8); }
+  .manner-card.appr { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .manner-card.nasal { background: linear-gradient(135deg, #1a7a40, #2ecc71); }
+  .manner-card.affr { background: linear-gradient(135deg, #c07a00, #f0a500); }
+  .manner-card .m-icon { font-size: 2rem; margin-bottom: 8px; }
+  .manner-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .manner-card p { font-size: .82rem; opacity: .9; line-height: 1.3; }
+  .manner-card .sounds { margin-top: 8px; background: rgba(255,255,255,.2); border-radius: 6px; padding: 4px 8px; font-size: .78rem; letter-spacing: 2px; }
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  .stress-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .stress-word { background: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; min-width: 140px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .stress-word .syl-stressed { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+  .stress-word .syl-unstressed { font-size: 1.1rem; color: var(--muted); }
+  .stress-word .sw-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .place-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 3: The International Phonetic Alphabet (IPA)</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+  <div class="slide slide-title" id="s1">
+    <div class="wave-emoji">🗺️</div>
+    <div class="big-title">The International Phonetic Alphabet</div>
+    <div class="subtitle">Topic 3 — One Symbol, One Sound — Always — English Phonetics Course</div>
+    <div class="badge">🔤 IPA · Transcription · Square Brackets · Slashes · 44 Phonemes</div>
+  </div>
+  <div class="slide slide-content" id="s2">
+    <div class="motivation-box">
+      <div class="mot-title">🌟 Why does this lesson matter?</div>
+      <div class="mot-body">English spelling is one of the most irregular in the world. The same letters can sound completely different! The IPA solves this problem forever: ONE symbol ALWAYS equals ONE sound. Once you know the IPA, you can read any English word correctly — even words you have never seen before.</div>
+    </div>
+  </div>
+  <div class="slide slide-content" id="s3">
+    <div class="slide-header">
+      <div class="tag">The Problem</div>
+      <h2>Why Can't We Use Regular Spelling?</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom: 16px; font-weight: 600;">Look at these words — all spelled with 'ough' but all DIFFERENT sounds:</p>
+      <table class="compare-table">
+        <tr>
+          <th>Word</th>
+          <th>Pronunciation</th>
+        </tr>
+        <tr>
+          <td><strong>tough</strong></td>
+          <td>/tʌf/ — rhymes with 'stuff'</td>
+        </tr>
+        <tr>
+          <td><strong>through</strong></td>
+          <td>/θruː/ — rhymes with 'blue'</td>
+        </tr>
+        <tr>
+          <td><strong>though</strong></td>
+          <td>/ðəʊ/ — rhymes with 'so'</td>
+        </tr>
+        <tr>
+          <td><strong>cough</strong></td>
+          <td>/kɒf/ — rhymes with 'off'</td>
+        </tr>
+        <tr>
+          <td><strong>thought</strong></td>
+          <td>/θɔːt/ — rhymes with 'sort'</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">😱 Five spellings. Five different sounds. This is why phoneticians created the IPA!</div>
+  </div>
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <div class="tag">The Solution</div>
+      <h2>What is the IPA?</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🗺️ The International Phonetic Alphabet (IPA)</div>
+      <div class="def">A system of symbols where EVERY symbol represents EXACTLY ONE sound. Created in 1888 and updated regularly. Used by linguists, language teachers, and dictionaries worldwide.</div>
+      <div class="example">💡 In the IPA, the word 'fish' is written /fɪʃ/ — always, in any dictionary, in any country!</div>
+    </div>
+    <div class="branches-grid">
+      <div class="branch-card art">
+        <div class="icon">🎯</div>
+        <h3>One Symbol = One Sound</h3>
+        <p>No confusion. /p/ is always /p/.</p>
+      </div>
+      <div class="branch-card aco">
+        <div class="icon">🌍</div>
+        <h3>Works for ALL Languages</h3>
+        <p>The same symbols describe sounds in English, Arabic, Chinese, and more.</p>
+      </div>
+      <div class="branch-card aud">
+        <div class="icon">📚</div>
+        <h3>Used in All Dictionaries</h3>
+        <p>Cambridge, Oxford, Merriam-Webster — all use the IPA.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide slide-content" id="s5">
+    <div class="slide-header">
+      <div class="tag">Notation</div>
+      <h2>Square Brackets [ ] vs Slashes / /</h2>
+    </div>
+    <div class="bracket-demo">
+      <div class="bracket-item">
+        <div class="bracket-symbol sq">[p]</div>
+        <div>Phonetic transcription — narrow. Shows exact sounds including small details like aspiration: [pʰɪn]</div>
+      </div>
+      <div class="bracket-item">
+        <div class="bracket-symbol sl">/p/</div>
+        <div>Phonemic transcription — broad. Shows only meaning-changing sounds: /pɪn/</div>
+      </div>
+    </div>
+    <div class="info-note">📌 For most purposes in this course, we use PHONEMIC transcription with slashes / /. Square brackets [ ] are used when we need more detail.</div>
+  </div>
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <div class="tag">IPA Consonants 1</div>
+      <h2>English Consonants — Group 1</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom: 16px; font-weight: 600;">English has 24 consonant phonemes. Here are the first group:</p>
+      <table class="compare-table">
+        <tr>
+          <th>Symbol</th>
+          <th>Word Example</th>
+          <th>Spelling</th>
+        </tr>
+        <tr>
+          <td>/p/</td>
+          <td>pen, cap</td>
+          <td>p</td>
+        </tr>
+        <tr>
+          <td>/b/</td>
+          <td>bat, cab</td>
+          <td>b</td>
+        </tr>
+        <tr>
+          <td>/t/</td>
+          <td>top, cat</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>/d/</td>
+          <td>dog, bad</td>
+          <td>d</td>
+        </tr>
+        <tr>
+          <td>/k/</td>
+          <td>cat, back</td>
+          <td>c, k, ck</td>
+        </tr>
+        <tr>
+          <td>/g/</td>
+          <td>go, bag</td>
+          <td>g</td>
+        </tr>
+        <tr>
+          <td>/f/</td>
+          <td>fan, off</td>
+          <td>f, ph</td>
+        </tr>
+        <tr>
+          <td>/v/</td>
+          <td>van, live</td>
+          <td>v</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 Notice /k/ can be spelled c, k, or ck — but the IPA symbol is always the same: /k/.</div>
+  </div>
+  <div class="slide slide-content" id="s7">
+    <div class="slide-header">
+      <div class="tag">IPA Consonants 2</div>
+      <h2>English Consonants — Group 2</h2>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Symbol</th>
+          <th>Example</th>
+          <th>Note</th>
+        </tr>
+        <tr>
+          <td>/s/</td>
+          <td>sit, bus</td>
+          <td>voiceless</td>
+        </tr>
+        <tr>
+          <td>/z/</td>
+          <td>zoo, buzz</td>
+          <td>voiced pair of /s/</td>
+        </tr>
+        <tr>
+          <td>/ʃ/</td>
+          <td>ship, wash</td>
+          <td>sh sound — voiceless</td>
+        </tr>
+        <tr>
+          <td>/ʒ/</td>
+          <td>measure, vision</td>
+          <td>voiced pair of /ʃ/</td>
+        </tr>
+        <tr>
+          <td>/h/</td>
+          <td>hat, ahead</td>
+          <td>voiceless, glottal</td>
+        </tr>
+        <tr>
+          <td>/tʃ/</td>
+          <td>church, watch</td>
+          <td>affricate — voiceless</td>
+        </tr>
+        <tr>
+          <td>/dʒ/</td>
+          <td>judge, age</td>
+          <td>affricate — voiced</td>
+        </tr>
+        <tr>
+          <td>/θ/</td>
+          <td>think, bath</td>
+          <td>th — voiceless</td>
+        </tr>
+        <tr>
+          <td>/ð/</td>
+          <td>this, breathe</td>
+          <td>th — voiced</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 /θ/ and /ð/ are BOTH spelled 'th' in English — but they are TWO different sounds! 'think' /θɪŋk/ vs 'this' /ðɪs/.</div>
+  </div>
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <div class="tag">IPA Consonants 3</div>
+      <h2>English Consonants — Group 3 (Sonorants)</h2>
+    </div>
+    <div class="card">
+      <table class="compare-table">
+        <tr>
+          <th>Symbol</th>
+          <th>Example</th>
+          <th>Type</th>
+        </tr>
+        <tr>
+          <td>/m/</td>
+          <td>man, swim</td>
+          <td>nasal</td>
+        </tr>
+        <tr>
+          <td>/n/</td>
+          <td>no, sun</td>
+          <td>nasal</td>
+        </tr>
+        <tr>
+          <td>/ŋ/</td>
+          <td>sing, long</td>
+          <td>nasal — back of mouth</td>
+        </tr>
+        <tr>
+          <td>/l/</td>
+          <td>love, tall</td>
+          <td>lateral</td>
+        </tr>
+        <tr>
+          <td>/r/</td>
+          <td>red, car</td>
+          <td>approximant</td>
+        </tr>
+        <tr>
+          <td>/j/</td>
+          <td>yes, you</td>
+          <td>approximant</td>
+        </tr>
+        <tr>
+          <td>/w/</td>
+          <td>wet, away</td>
+          <td>approximant</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">💡 /ŋ/ never starts a word in English — it only appears in the middle or at the END: 'sing' /sɪŋ/, 'finger' /fɪŋɡə/.</div>
+  </div>
+  <div class="slide slide-content" id="s9">
+    <div class="slide-header">
+      <div class="tag">IPA Vowels</div>
+      <h2>English Vowel Phonemes — Overview</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom: 16px; font-weight: 600;">English has approximately 20 vowel sounds! Here are the key ones:</p>
+      <div style="margin-bottom: 16px;">
+        <p style="margin-bottom: 8px; font-weight: 600;">Short vowels:</p>
+        <div class="vowel-row">
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/ɪ/</div>
+            <div class="vowel-example">sit</div>
+          </div>
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/e/</div>
+            <div class="vowel-example">bed</div>
+          </div>
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/æ/</div>
+            <div class="vowel-example">cat</div>
+          </div>
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/ʌ/</div>
+            <div class="vowel-example">cup</div>
+          </div>
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/ɒ/</div>
+            <div class="vowel-example">top</div>
+          </div>
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/ʊ/</div>
+            <div class="vowel-example">book</div>
+          </div>
+          <div class="vowel-card short">
+            <div class="vowel-symbol">/ə/</div>
+            <div class="vowel-example">about</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <p style="margin-bottom: 8px; font-weight: 600;">Long vowels:</p>
+        <div class="vowel-row">
+          <div class="vowel-card long">
+            <div class="vowel-symbol">/iː/</div>
+            <div class="vowel-example">see</div>
+          </div>
+          <div class="vowel-card long">
+            <div class="vowel-symbol">/ɑː/</div>
+            <div class="vowel-example">car</div>
+          </div>
+          <div class="vowel-card long">
+            <div class="vowel-symbol">/ɔː/</div>
+            <div class="vowel-example">more</div>
+          </div>
+          <div class="vowel-card long">
+            <div class="vowel-symbol">/uː/</div>
+            <div class="vowel-example">moon</div>
+          </div>
+          <div class="vowel-card long">
+            <div class="vowel-symbol">/ɜː/</div>
+            <div class="vowel-example">bird</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="margin-bottom: 8px; font-weight: 600;">Diphthongs (two vowels in one):</p>
+        <div class="vowel-row">
+          <div class="vowel-card diph">
+            <div class="vowel-symbol">/eɪ/</div>
+            <div class="vowel-example">day</div>
+          </div>
+          <div class="vowel-card diph">
+            <div class="vowel-symbol">/aɪ/</div>
+            <div class="vowel-example">my</div>
+          </div>
+          <div class="vowel-card diph">
+            <div class="vowel-symbol">/ɔɪ/</div>
+            <div class="vowel-example">boy</div>
+          </div>
+          <div class="vowel-card diph">
+            <div class="vowel-symbol">/əʊ/</div>
+            <div class="vowel-example">go</div>
+          </div>
+          <div class="vowel-card diph">
+            <div class="vowel-symbol">/aʊ/</div>
+            <div class="vowel-example">now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-note">💡 The length mark ː means a long vowel. /ɪ/ is SHORT, /iː/ is LONG. Compare 'sit' /sɪt/ and 'seat' /siːt/.</div>
+  </div>
+  <div class="slide slide-content" id="s10">
+    <div class="slide-header">
+      <div class="tag">Practice</div>
+      <h2>Reading IPA Transcriptions</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom: 16px; font-weight: 600;">Can you work out what these words are? Look at the symbols carefully:</p>
+      <table class="compare-table">
+        <tr>
+          <th>IPA</th>
+          <th>Word</th>
+        </tr>
+        <tr>
+          <td>/kæt/</td>
+          <td>? (cat)</td>
+        </tr>
+        <tr>
+          <td>/dɒɡ/</td>
+          <td>? (dog)</td>
+        </tr>
+        <tr>
+          <td>/bɜːd/</td>
+          <td>? (bird)</td>
+        </tr>
+        <tr>
+          <td>/ʃɪp/</td>
+          <td>? (ship)</td>
+        </tr>
+        <tr>
+          <td>/θɪŋk/</td>
+          <td>? (think)</td>
+        </tr>
+        <tr>
+          <td>/ðɪs/</td>
+          <td>? (this)</td>
+        </tr>
+        <tr>
+          <td>/piːpl/</td>
+          <td>? (people)</td>
+        </tr>
+        <tr>
+          <td>/tʃɜːtʃ/</td>
+          <td>? (church)</td>
+        </tr>
+      </table>
+    </div>
+    <div class="info-note">✅ Answers: cat, dog, bird, ship, think, this, people, church. How many did you get right?</div>
+  </div>
+  <div class="slide slide-content" id="s11">
+    <div class="slide-header">
+      <div class="tag">Resources</div>
+      <h2>Practice the IPA online 🌐</h2>
+    </div>
+    <div class="resource-section">
+      <h3>Interactive tools and dictionaries:</h3>
+      <div class="resource-links">
+        <a href="https://www.ipachart.com" target="_blank" class="resource-link">🗺️ Interactive IPA Chart — click any symbol to hear it</a>
+        <a href="https://dictionary.cambridge.org" target="_blank" class="resource-link">🔊 Cambridge Dictionary — IPA + audio for every word</a>
+        <a href="https://tophonetics.com" target="_blank" class="resource-link">✍️ ToPhonetics — type any English word, get IPA instantly</a>
+      </div>
+    </div>
+    <div class="card">
+      <p style="margin: 0;">💡 Tip: When you look up a word in a dictionary, find the IPA transcription first. Read it symbol by symbol. Then listen to the audio. This is the fastest way to improve your pronunciation.</p>
+    </div>
+  </div>
+  <div class="slide completion-slide" id="s12">
+    <div class="comp-icon">🗺️</div>
+    <h2>Topic 3 Complete!</h2>
+    <p>You can now read IPA symbols! This is a superpower for language learners — you can look up any word and know exactly how to pronounce it.</p>
+    <div class="comp-badges">
+      <div class="comp-badge">✅ 24 Consonant Phonemes</div>
+      <div class="comp-badge">✅ 20 Vowel Phonemes</div>
+      <div class="comp-badge">✅ [ ] vs / / notation</div>
+      <div class="comp-badge">✅ Reading IPA transcriptions</div>
+    </div>
+  </div>
+</div>
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+<script>
+const QUIZZES = [
+  { afterSlide: 3, badge: "❓ Quiz 1 of 4", question: "Why was the International Phonetic Alphabet (IPA) invented?", options:["To make English spelling easier to learn","To give every speech sound one consistent symbol regardless of spelling","To replace all existing alphabets","To describe only English pronunciation"], correct: 1, feedbackCorrect:"✅ Correct! The IPA was invented to solve the problem of inconsistent spelling. One symbol always represents one sound, in any language.", feedbackWrong:"❌ The IPA was invented to give every speech sound its own unique symbol. This way, pronunciation can be written consistently for ANY language, regardless of how the word is spelled." },
+  { afterSlide: 5, badge: "❓ Quiz 2 of 4", question: "A phonetician writes the transcription /kæt/. The use of SLASH BRACKETS means this is a _____ transcription.", options:["Narrow phonetic transcription showing every detail","Broad phonemic transcription showing only meaning-changing sounds","A spelling mistake","A foreign language transcription"], correct: 1, feedbackCorrect:"✅ Correct! Slash brackets / / indicate a BROAD (phonemic) transcription, which shows only the sounds that change meaning.", feedbackWrong:"❌ Remember: Square brackets [ ] = narrow PHONETIC (lots of detail). Slash brackets / / = broad PHONEMIC (only meaning-changing sounds like /kæt/)." },
+  { afterSlide: 7, badge: "❓ Quiz 3 of 4", question: "Both words 'think' and 'this' are spelled with 'th'. But they use different IPA symbols. Which TWO symbols represent the 'th' sounds in English?", options:["/s/ and /z/","/f/ and /v/","/θ/ and /ð/","/t/ and /d/"], correct: 2, feedbackCorrect:"✅ Correct! 'think' uses /θ/ (voiceless th) and 'this' uses /ð/ (voiced th). They sound different but are both spelled 'th' in English.", feedbackWrong:"❌ English has TWO 'th' sounds: /θ/ as in 'think' (voiceless) and /ð/ as in 'this' (voiced). They look the same in spelling but sound different!" },
+  { afterSlide: 10, badge: "❓ Quiz 4 of 4", question: "Which word does the IPA transcription /bɜːd/ represent?", options:["bad","beard","bird","bed"], correct: 2, feedbackCorrect:"✅ Correct! /bɜːd/ = bird. /b/ = b, /ɜː/ = the vowel in 'bird/word/her', /d/ = d.", feedbackWrong:"❌ Let's decode it: /b/ = b sound, /ɜː/ = the vowel in 'word', 'her', 'nurse', /d/ = d sound. Put it together: BIRD." }
+];
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+function showSlide(n) { document.querySelectorAll('.slide').forEach(s => s.classList.remove('active')); const t = document.getElementById('s' + n); if (t) t.classList.add('active'); document.getElementById('btn-prev').disabled = (n <= 1); document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES); updateDots(); updateProgress(); }
+function updateDots() { document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide)); }
+function updateProgress() { document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%'; document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES; }
+function nextSlide() { const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide); if (idx !== -1) { activeQuiz = quizQueue[idx]; openQuiz(activeQuiz); return; } if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); } }
+function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+function goToSlide(n) { if (n >= 1 && n <= TOTAL_SLIDES) { currentSlide = n; showSlide(currentSlide); } }
+function openQuiz(quiz) { quizAnswered = false; document.getElementById('q-badge').textContent = quiz.badge; document.getElementById('q-question').textContent = quiz.question; document.getElementById('q-feedback').className = 'quiz-feedback'; document.getElementById('q-feedback').textContent = ''; document.getElementById('q-continue').style.display = 'none'; const optDiv = document.getElementById('q-options'); optDiv.innerHTML = ''; ['A','B','C','D'].forEach((l, i) => { const btn = document.createElement('div'); btn.className = 'quiz-option'; btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>'; btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong); optDiv.appendChild(btn); }); document.getElementById('quiz-overlay').classList.add('show'); }
+function selectAnswer(chosen, correct, fbC, fbW) { if (quizAnswered) return; quizAnswered = true; document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled')); const fb = document.getElementById('q-feedback'); document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong'); if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct'); fb.textContent = chosen === correct ? fbC : fbW; fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb'); document.getElementById('q-continue').style.display = 'inline-block'; const idx = quizQueue.findIndex(q => q === activeQuiz); if (idx !== -1) quizQueue.splice(idx, 1); }
+function closeQuiz() { document.getElementById('quiz-overlay').classList.remove('show'); if (currentSlide < TOTAL_SLIDES) { currentSlide++; showSlide(currentSlide); } }
+function openFullPage() { window.open(window.location.href, '_blank'); }
+document.addEventListener('keydown', e => { if (document.getElementById('quiz-overlay').classList.contains('show')) return; if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); } });
+function buildDots() { const row = document.getElementById('dot-row'); row.innerHTML = ''; for (let i = 1; i <= TOTAL_SLIDES; i++) { const d = document.createElement('div'); d.className = 'dot' + (i === 1 ? ' active' : ''); d.onclick = () => goToSlide(i); row.appendChild(d); } }
+buildDots(); showSlide(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Phonetics – Topic 7: Affricates, Aspiration & Nasals</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #e8532a;
+    --gold: #f0a500;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e2a38;
+    --muted: #6b7c93;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); height: auto; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto !important; overflow-x: hidden; }
+  #topbar { background: var(--primary); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 50; }
+  #topbar h1 { font-size: 1rem; font-weight: 600; letter-spacing: .5px; margin: 0; }
+  #slide-counter { font-size: 0.85rem; opacity: .8; }
+  #fs-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: background .2s; }
+  #fs-btn:hover { background: rgba(255,255,255,.3); }
+  #progress-wrap { height: 6px; background: rgba(0,0,0,0.1); flex-shrink: 0; }
+  #progress-bar { height: 100%; background: var(--gold); transition: width .4s ease; width: 0%; }
+  #stage { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 30px 20px 60px 20px; position: relative; }
+  .slide { display: none; width: 100%; animation: fadeInSlide 0.4s ease-out forwards; }
+  .slide.active { display: block; }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  /* TITLE SLIDE */
+  .slide-title { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .slide-title .big-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-title .subtitle { font-size: 1.1rem; opacity: .8; }
+  .slide-title .badge { margin-top: 24px; background: var(--gold); color: #1a1a1a; padding: 6px 20px; border-radius: 20px; font-size: .9rem; font-weight: 600; display: inline-block; }
+  .wave-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+  /* CONTENT SLIDES */
+  .slide-content { background: transparent; }
+  .slide-header { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .slide-header .tag { background: var(--primary); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  .slide-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin: 0; }
+  .card { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  /* DEFINITION BOX */
+  .definition-box { border-left: 5px solid var(--accent); background: #fff8f5; border-radius: 10px; padding: 18px 22px; width: 100%; margin-bottom: 20px; }
+  .definition-box .term { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .definition-box .def { font-size: 1rem; line-height: 1.6; color: var(--text); }
+  .definition-box .example { margin-top: 8px; font-style: italic; color: var(--muted); font-size: .92rem; }
+  /* MOTIVATION BOX */
+  .motivation-box { background: linear-gradient(135deg, #fffbe6, #fff3cc); border: 2px solid var(--gold); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; width: 100%; }
+  .motivation-box .mot-title { font-size: 1.1rem; font-weight: 700; color: #7a5a00; margin-bottom: 8px; }
+  .motivation-box .mot-body { font-size: 0.95rem; line-height: 1.6; color: #5a4200; }
+  /* BRANCHES GRID */
+  .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; margin: 20px 0; }
+  .branch-card { border-radius: 14px; padding: 24px 16px; text-align: center; color: #fff; transition: transform 0.2s; }
+  .branch-card:hover { transform: translateY(-5px); }
+  .branch-card.art { background: linear-gradient(135deg,#1a3a5c,#2460a0); }
+  .branch-card.aco { background: linear-gradient(135deg,#7b2d8b,#b044c8); }
+  .branch-card.aud { background: linear-gradient(135deg,#c0392b,#e74c3c); }
+  .branch-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .branch-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .branch-card p { font-size: .85rem; opacity: .9; line-height: 1.4; }
+  .branch-card .focus { margin-top: 10px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 8px; font-size: .75rem; }
+  /* COMPARISON TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 12px 18px; text-align: left; font-weight: 700; font-size: 1rem; }
+  .compare-table th:first-child { background: var(--accent); color: #fff; border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { background: var(--primary); color: #fff; border-radius: 0 10px 0 0; }
+  .compare-table td { padding: 10px 18px; font-size: .93rem; border-bottom: 1px solid #eee; line-height: 1.5; }
+  .compare-table tr:nth-child(even) td { background: #f7f9fc; }
+  /* NOTATION CARDS */
+  .notation-row { display: flex; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .notation-card { flex: 1; min-width: 200px; border-radius: 14px; padding: 18px; text-align: center; }
+  .notation-card.phone { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .notation-card.phoneme { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .notation-card.allophone { background: #f0fff4; border: 2px solid #90e0a0; }
+  .notation-card .symbol { font-size: 2rem; font-weight: 700; margin: 10px 0; }
+  /* MINIMAL PAIR BOXES */
+  .pair-container { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .pair-box { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 20px; font-size: 1.1rem; flex: 1; min-width: 160px; justify-content: center; }
+  .diff-letter { color: var(--accent); font-weight: 900; }
+  /* FEATURE GRID */
+  .feature-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .feature-cell { background: #fff; border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .feature-header { font-size: 1.1rem; font-weight: 700; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; text-align: center; }
+  /* SUMMARY GRID */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .summary-card { background: #fff; border-radius: 12px; padding: 18px; border-top: 4px solid; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  /* INFO NOTE */
+  .info-note { width: 100%; background: #fffbe6; border: 1.5px solid var(--gold); border-radius: 10px; padding: 12px 18px; font-size: .9rem; color: #7a5a00; display: flex; gap: 8px; align-items: flex-start; margin: 16px 0; }
+  /* BRACKET DEMO */
+  .bracket-demo { display: flex; gap: 24px; justify-content: center; width: 100%; margin-bottom: 20px; flex-wrap: wrap; }
+  .bracket-item { text-align: center; flex: 1; min-width: 150px; }
+  .bracket-symbol { font-size: 2.8rem; font-weight: 700; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .sq { background: #eaf4ff; color: #1a5c9a; border: 2px solid #aad4f5; }
+  .sl { background: #fff0f5; color: #9a1a4a; border: 2px solid #f5a0c0; }
+  /* ICON GRID */
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
+  .icon-card { background: #fff; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.07); border-top: 4px solid var(--primary); }
+  .icon-card .ic-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .icon-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .icon-card p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+  /* ARTICULATOR ROWS */
+  .articulators-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .art-box { flex: 1; min-width: 180px; border-radius: 12px; padding: 16px; }
+  .art-box.active { background: #eaf4ff; border: 2px solid #aad4f5; }
+  .art-box.passive { background: #fff0f5; border: 2px solid #f5a0c0; }
+  .art-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .art-box ul { padding-left: 18px; font-size: .9rem; line-height: 1.7; }
+  /* PLACE TABLE */
+  .place-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .place-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid var(--primary); }
+  .place-card .pl-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .place-card .pl-where { font-size: .85rem; color: var(--muted); margin-bottom: 6px; font-style: italic; }
+  .place-card .pl-sounds { font-size: 1.1rem; letter-spacing: 4px; color: var(--accent); font-weight: 700; }
+  /* MANNER CARDS */
+  .manner-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .manner-card { flex: 1; min-width: 180px; border-radius: 14px; padding: 20px; text-align: center; color: #fff; }
+  .manner-card.stop { background: linear-gradient(135deg, #1a3a5c, #2460a0); }
+  .manner-card.fric { background: linear-gradient(135deg, #7b2d8b, #b044c8); }
+  .manner-card.appr { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .manner-card.nasal { background: linear-gradient(135deg, #1a7a40, #2ecc71); }
+  .manner-card.affr { background: linear-gradient(135deg, #c07a00, #f0a500); }
+  .manner-card .m-icon { font-size: 2rem; margin-bottom: 8px; }
+  .manner-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .manner-card p { font-size: .82rem; opacity: .9; line-height: 1.3; }
+  .manner-card .sounds { margin-top: 8px; background: rgba(255,255,255,.2); border-radius: 6px; padding: 4px 8px; font-size: .78rem; letter-spacing: 2px; }
+  /* VOWEL CHART */
+  .vowel-chart { width: 100%; background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .vowel-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .vowel-card { background: #fff; border: 2px solid var(--primary); border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 90px; }
+  .vowel-card.short { border-color: var(--accent); background: #fff8f5; }
+  .vowel-card.long { border-color: var(--primary); background: #eaf4ff; }
+  .vowel-card.diph { border-color: #7b2d8b; background: #fdf0ff; }
+  .vowel-symbol { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .vowel-card.short .vowel-symbol { color: var(--accent); }
+  .vowel-card.diph .vowel-symbol { color: #7b2d8b; }
+  .vowel-example { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  /* STRESS DIAGRAM */
+  .stress-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; margin-bottom: 20px; }
+  .stress-word { background: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; min-width: 140px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .stress-word .syl-stressed { font-size: 1.5rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+  .stress-word .syl-unstressed { font-size: 1.1rem; color: var(--muted); }
+  .stress-word .sw-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  /* RESOURCES SECTION */
+  .resource-section { background: #fff; border-radius: 14px; padding: 22px 28px; box-shadow: 0 4px 18px rgba(0,0,0,.07); width: 100%; margin-bottom: 20px; }
+  .resource-section h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .resource-link { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
+  .resource-link:hover { background: var(--accent); transform: scale(1.04); }
+  /* COMPLETION SLIDE */
+  .completion-slide { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 60%, #2460a0 100%); color: #fff; border-radius: 28px; padding: 50px 30px; text-align: center; }
+  .completion-slide .comp-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .completion-slide h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .completion-slide p { font-size: 1.05rem; opacity: .85; line-height: 1.6; max-width: 500px; margin: 0 auto 20px auto; }
+  .comp-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .comp-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 6px 16px; font-size: .85rem; }
+  /* QUIZ OVERLAY */
+  #quiz-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.92); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity .35s; padding: 20px; }
+  #quiz-overlay.show { opacity: 1; pointer-events: all; }
+  .quiz-card { background: #fff; border-radius: 28px; padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .quiz-badge { display: inline-block; background: var(--gold); color: #1a1a1a; padding: 4px 14px; border-radius: 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .quiz-question { font-size: 1.18rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .quiz-option { border: 2px solid #e0e6f0; border-radius: 14px; padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .quiz-option:hover:not(.disabled) { border-color: var(--primary); background: #eef3ff; transform: translateX(4px); }
+  .quiz-option .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .quiz-option.correct { border-color: var(--green); background: #edfff5; }
+  .quiz-option.correct .opt-letter { background: var(--green); }
+  .quiz-option.wrong { border-color: var(--red); background: #fff0f0; }
+  .quiz-option.wrong .opt-letter { background: var(--red); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 12px; display: none; line-height: 1.5; }
+  .quiz-feedback.correct-fb { display: block; background: #edfff5; border: 2px solid var(--green); color: #1a7a40; }
+  .quiz-feedback.wrong-fb { display: block; background: #fff0f0; border: 2px solid var(--red); color: #8b0000; }
+  .quiz-continue { margin-top: 20px; padding: 12px 28px; background: var(--primary); color: #fff; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .quiz-continue:hover { background: var(--accent); }
+  /* BOTTOM NAV */
+  #bottom-nav { background: #fff; border-top: 1px solid #e0e6f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; position: sticky; bottom: 0; z-index: 50; }
+  .nav-btn { padding: 10px 26px; border-radius: 40px; border: none; font-size: .95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav-btn:hover:not(:disabled) { transform: scale(1.04); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+  #btn-prev { background: var(--bg); color: var(--primary); border: 2px solid #d0daea; }
+  #btn-next { background: var(--primary); color: #fff; }
+  #btn-next:hover:not(:disabled) { background: var(--accent); }
+  .slide-dots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d0daea; cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 640px) {
+    #stage { padding: 20px 15px; }
+    .slide-header h2 { font-size: 1.3rem; }
+    .big-title { font-size: 1.8rem !important; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .place-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎓 English Phonetics — Topic 7: Affricates, Aspiration & Nasal Stops</h1>
+  <span id="slide-counter">Slide 1 / 12</span>
+  <button id="fs-btn" onclick="openFullPage()">⤢ Full Page</button>
+</div>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="stage">
+  <div class="slide slide-title" id="s1">
+    <div class="wave-emoji">🎺</div>
+    <div class="big-title">Consonants: Affricates, Aspiration & Nasal Stops</div>
+    <div class="subtitle">Topic 7 — English Phonetics Course</div>
+    <div class="badge">🎺 Affricates /tʃ/ /dʒ/ · Aspiration [pʰ] · Nasal Stops /m/ /n/ /ŋ/</div>
+  </div>
+
+  <div class="slide slide-content" id="s2">
+    <div class="slide-header">
+      <div class="tag">Motivation</div>
+      <h2>Why does this lesson matter?</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🌟 Why does this lesson matter?</div>
+      <div class="mot-body">Affricates are in everyday English words like 'church', 'cheese', 'judge', and 'age'. Nasal stops are in 'man', 'no', and 'sing'. Getting these right is essential for clear English pronunciation — and understanding why 'pin' sounds different from 'spin' will help you sound more natural!</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s3">
+    <div class="slide-header">
+      <div class="tag">Manner 4</div>
+      <h2>What are Affricates? 🎺</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">🎺 Affricate</div>
+      <div class="def">An affricate starts as a STOP (air completely blocked) and immediately becomes a FRICATIVE (air squeezed through a narrow gap). It is one sound that combines two movements.</div>
+      <div class="example">💡 /tʃ/ in 'church' = stop /t/ + fricative /ʃ/ happening together. /dʒ/ in 'judge' = stop /d/ + fricative /ʒ/.</div>
+    </div>
+    <div class="branches-grid">
+      <div class="branch-card art">
+        <div class="icon">🔇</div>
+        <h3>/tʃ/ — Voiceless Affricate</h3>
+        <p>church, cheese, watch, choose, teacher</p>
+        <div class="focus">Same place as /ʃ/ — post-alveolar</div>
+      </div>
+      <div class="branch-card aco">
+        <div class="icon">🔊</div>
+        <h3>/dʒ/ — Voiced Affricate</h3>
+        <p>judge, jam, age, bridge, soldier</p>
+        <div class="focus">Voiced pair of /tʃ/</div>
+      </div>
+    </div>
+    <div class="info-note">💡 English has only TWO affricate phonemes: /tʃ/ and /dʒ/. They are both post-alveolar.</div>
+  </div>
+
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <div class="tag">Affricates in Words</div>
+      <h2>Recognizing /tʃ/ and /dʒ/ in Spelling</h2>
+    </div>
+    <div class="card">Affricates can be spelled in MANY different ways — but the sound is always the same:</div>
+    <table class="compare-table">
+      <tr>
+        <th>Sound</th>
+        <th>Common Spelling</th>
+        <th>Examples</th>
+      </tr>
+      <tr>
+        <td>/tʃ/</td>
+        <td>ch</td>
+        <td>church, cheese, chair, child</td>
+      </tr>
+      <tr>
+        <td>/tʃ/</td>
+        <td>tch</td>
+        <td>watch, catch, match, kitchen</td>
+      </tr>
+      <tr>
+        <td>/tʃ/</td>
+        <td>t + ure</td>
+        <td>picture, nature, future, creature</td>
+      </tr>
+      <tr>
+        <td>/dʒ/</td>
+        <td>j</td>
+        <td>jam, jump, just, jacket</td>
+      </tr>
+      <tr>
+        <td>/dʒ/</td>
+        <td>g + e/i/y</td>
+        <td>age, giant, gym, bridge</td>
+      </tr>
+      <tr>
+        <td>/dʒ/</td>
+        <td>dge</td>
+        <td>judge, bridge, fridge, hedge</td>
+      </tr>
+    </table>
+    <div class="info-note">💡 This is another reason why IPA is so useful! Despite all these different spellings, the sounds /tʃ/ and /dʒ/ each have just ONE IPA symbol.</div>
+  </div>
+
+  <div class="slide slide-content" id="s5">
+    <div class="slide-header">
+      <div class="tag">Aspiration</div>
+      <h2>What is Aspiration? 💨</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">💨 Aspiration [h]</div>
+      <div class="def">A small puff of air that comes AFTER a voiceless stop consonant when it is at the START of a stressed syllable. In IPA, we mark it with a small raised [h]: [pʰ].</div>
+      <div class="example">💡 Hold a thin piece of paper in front of your mouth and say "pin". The paper moves! Now say "spin" — it barely moves. This puff is aspiration!</div>
+    </div>
+    <div class="notation-row">
+      <div class="notation-card phone">
+        <h4 style="font-size: 1.1rem; color: #1a5c9a; margin-bottom: 8px;">ASPIRATED</h4>
+        <div class="symbol">[pʰ]</div>
+        <p>In 'pin', 'top', 'key' — at the start of a stressed syllable — strong puff of air</p>
+      </div>
+      <div class="notation-card phoneme">
+        <h4 style="font-size: 1.1rem; color: #9a1a4a; margin-bottom: 8px;">UNASPIRATED</h4>
+        <div class="symbol">[p]</div>
+        <p>In 'spin', 'stop', 'sky' — after /s/ — no puff of air</p>
+      </div>
+    </div>
+    <div class="info-note">💡 Aspiration does NOT change meaning in English — [pʰ] and [p] are ALLOPHONES of /p/.</div>
+  </div>
+
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <div class="tag">Aspiration Rules</div>
+      <h2>When Are Stops Aspirated in English?</h2>
+    </div>
+    <div class="card">The rule for aspiration in English:</div>
+    <table class="compare-table">
+      <tr>
+        <th>Context</th>
+        <th>Result</th>
+      </tr>
+      <tr>
+        <td>Start of a STRESSED syllable (no /s/ before it)</td>
+        <td>ASPIRATED [pʰ], [tʰ], [kʰ]</td>
+      </tr>
+      <tr>
+        <td>After /s/ in the same syllable</td>
+        <td>UNASPIRATED [p], [t], [k]</td>
+      </tr>
+    </table>
+    <div class="pair-container">
+      <div class="pair-box">pin [pʰɪn] ↔ spin [spɪn]</div>
+      <div class="pair-box">top [tʰɒp] ↔ stop [stɒp]</div>
+      <div class="pair-box">key [kʰiː] ↔ sky [skaɪ]</div>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🌍 Aspiration in Other Languages</div>
+      <div class="mot-body">In many languages (like Arabic, French, Spanish), stops are NEVER aspirated. If you speak these languages, you may not aspirate English stops — this can make your pronunciation sound slightly different from native English. Practice adding that puff of air!</div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s7">
+    <div class="slide-header">
+      <div class="tag">Manner 5</div>
+      <h2>Nasal Stops: Sounds Through the Nose 👃</h2>
+    </div>
+    <div class="definition-box">
+      <div class="term">👃 Nasal Stop</div>
+      <div class="def">The mouth is CLOSED (like a stop — air is blocked by the lips or tongue). But the velum (soft palate) LOWERS, so air flows through the NOSE. All nasal stops are VOICED.</div>
+      <div class="example">💡 Say 'mmm' with your mouth closed. Air comes out through your nose. Now pinch your nose — you cannot continue the sound! That's a nasal stop.</div>
+    </div>
+    <div class="branches-grid">
+      <div class="branch-card art">
+        <div class="icon">👄</div>
+        <h3>/m/ Bilabial Nasal</h3>
+        <p>man, swim, home, time</p>
+        <div class="focus">LIPS closed — air through nose</div>
+      </div>
+      <div class="branch-card aco">
+        <div class="icon">👅</div>
+        <h3>/n/ Alveolar Nasal</h3>
+        <p>no, sun, under, ten</p>
+        <div class="focus">TONGUE TIP at alveolar ridge — air through nose</div>
+      </div>
+      <div class="branch-card aud">
+        <div class="icon">🔙</div>
+        <h3>/ŋ/ Velar Nasal</h3>
+        <p>sing, ring, long, finger</p>
+        <div class="focus">BACK OF TONGUE at velum — air through nose</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <div class="tag">The /ŋ/ Sound</div>
+      <h2>The Tricky /ŋ/ — The Velar Nasal</h2>
+    </div>
+    <div class="definition-box" style="border-left-color: #7b2d8b; background-color: #fdf0ff;">
+      <div class="term" style="color: #7b2d8b;">🔙 /ŋ/ — Voiced Velar Nasal</div>
+      <div class="def">The back of the tongue touches the velum (soft palate) and closes off the mouth. Air flows through the nose. This sound is spelled 'ng' or 'n' before /k/ or /g/.</div>
+      <div class="example">💡 'sing' /sɪŋ/ — 'ring' /rɪŋ/ — 'finger' /fɪŋɡər/ — 'bank' /bæŋk/</div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Fact</th>
+        <th>Detail</th>
+      </tr>
+      <tr>
+        <td>Appears at end of syllable</td>
+        <td>sing, ring, long, hang, strong</td>
+      </tr>
+      <tr>
+        <td>Appears in the middle</td>
+        <td>finger, singer, longer, anger</td>
+      </tr>
+      <tr>
+        <td>NEVER at the start</td>
+        <td>No English words begin with /ŋ/</td>
+      </tr>
+      <tr>
+        <td>/n/ before /k/ or /g/</td>
+        <td>bank = /bæŋk/, uncle = /ʌŋkl/</td>
+      </tr>
+    </table>
+    <div class="info-note">⚠️ COMMON MISTAKE: Many learners add an extra /g/ sound: 'sɪŋɡ' instead of 'sɪŋ'. In standard English 'sing', the /g/ is SILENT — only /ŋ/ at the end!</div>
+  </div>
+
+  <div class="slide slide-content" id="s9">
+    <div class="slide-header">
+      <div class="tag">Summary</div>
+      <h2>Topic 7: Complete Consonant Summary</h2>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-card" style="border-top-color: var(--accent);">
+        <h3 style="font-size: 1.2rem; color: var(--accent); margin-bottom: 8px;">/tʃ/ Voiceless Affricate</h3>
+        <p style="font-size: 0.95rem; color: var(--text);">church, cheese, watch — voiceless post-alveolar</p>
+      </div>
+      <div class="summary-card" style="border-top-color: #7b2d8b;">
+        <h3 style="font-size: 1.2rem; color: #7b2d8b; margin-bottom: 8px;">/dʒ/ Voiced Affricate</h3>
+        <p style="font-size: 0.95rem; color: var(--text);">judge, jam, age — voiced post-alveolar</p>
+      </div>
+      <div class="summary-card" style="border-top-color: var(--green);">
+        <h3 style="font-size: 1.2rem; color: var(--green); margin-bottom: 8px;">Aspiration [pʰ]</h3>
+        <p style="font-size: 0.95rem; color: var(--text);">Extra puff of air after voiceless stops at the start of stressed syllables — allophone, not a new phoneme</p>
+      </div>
+      <div class="summary-card" style="border-top-color: #7b2d8b;">
+        <h3 style="font-size: 1.2rem; color: #7b2d8b; margin-bottom: 8px;">/m/ Bilabial Nasal</h3>
+        <p style="font-size: 0.95rem; color: var(--text);">Lips closed, air through nose — 'man, swim'</p>
+      </div>
+      <div class="summary-card" style="border-top-color: #c0392b;">
+        <h3 style="font-size: 1.2rem; color: #c0392b; margin-bottom: 8px;">/n/ /ŋ/ Nasals</h3>
+        <p style="font-size: 0.95rem; color: var(--text);">Alveolar /n/ anywhere. Velar /ŋ/ only in the MIDDLE or END of syllables — NEVER the start</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-content" id="s10">
+    <div class="slide-header">
+      <div class="tag">Practice</div>
+      <h2>Pronunciation Practice 🎯</h2>
+    </div>
+    <div class="motivation-box">
+      <div class="mot-title">🗣️ Say these words aloud — focus on the highlighted sounds!</div>
+      <div class="mot-body">For each group, pay attention to the specific sound being practiced.</div>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--primary); margin-bottom: 12px;">Group 1: AFFRICATES — feel the stop + fricative combination</h3>
+      <p style="font-size: 1rem; line-height: 1.8;">church /tʃɜːtʃ/ · cheese /tʃiːz/ · judge /dʒʌdʒ/ · age /eɪdʒ/</p>
+
+      <h3 style="color: var(--primary); margin-top: 16px; margin-bottom: 12px;">Group 2: ASPIRATION — feel the puff of air on your hand</h3>
+      <p style="font-size: 1rem; line-height: 1.8;">pin [pʰɪn] · top [tʰɒp] · key [kʰiː]</p>
+
+      <h3 style="color: var(--primary); margin-top: 16px; margin-bottom: 12px;">Group 3: NASALS — feel the air through your nose</h3>
+      <p style="font-size: 1rem; line-height: 1.8;">man /mæn/ · sun /sʌn/ · sing /sɪŋ/ (NOT 'sing-g'!)</p>
+    </div>
+    <div class="info-note">💡 Record yourself on your phone and compare to a native speaker using Cambridge Dictionary audio.</div>
+  </div>
+
+  <div class="slide slide-content" id="s11">
+    <div class="slide-header">
+      <div class="tag">Resources</div>
+      <h2>Learn More</h2>
+    </div>
+    <div class="resource-section">
+      <h3>Practice these sounds online:</h3>
+      <div class="resource-links">
+        <a class="resource-link" href="https://soundsofspeech.uiowa.edu/" target="_blank">🎬 Animated IPA — See articulation for each sound</a>
+        <a class="resource-link" href="https://dictionary.cambridge.org" target="_blank">🔊 Cambridge Dictionary — audio for every word</a>
+        <a class="resource-link" href="https://www.ipachart.com" target="_blank">🗺️ Interactive IPA Chart — click to hear sounds</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide completion-slide" id="s12">
+    <div class="comp-icon">🎺</div>
+    <h2>Topic 7 Complete!</h2>
+    <p>You have now learned ALL manner types for English consonants: stops, fricatives, approximants, affricates, AND nasals. You can fully describe every English consonant!</p>
+    <div class="comp-badges">
+      <div class="comp-badge">✅ /tʃ/ and /dʒ/ Affricates</div>
+      <div class="comp-badge">✅ Aspiration [pʰ tʰ kʰ]</div>
+      <div class="comp-badge">✅ Nasal Stops /m/ /n/</div>
+      <div class="comp-badge">✅ The Tricky /ŋ/</div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Previous</button>
+  <div class="slide-dots" id="dot-row"></div>
+  <button class="nav-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+
+<div id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="q-badge">❓ Quiz</div>
+    <div class="quiz-question" id="q-question"></div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-continue" id="q-continue" onclick="closeQuiz()">Continue ▶</button>
+  </div>
+</div>
+
+<script>
+const QUIZZES = [
+  {
+    afterSlide: 3,
+    badge: "❓ Quiz 1 of 4",
+    question: "What makes an AFFRICATE different from a simple stop or a simple fricative?",
+    options: [
+      "It is made with both lips",
+      "It starts as a STOP and immediately becomes a FRICATIVE — two phases in one sound",
+      "It is always voiceless",
+      "It is made through the nose"
+    ],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! An affricate combines a STOP phase (air completely blocked) with a FRICATIVE phase (air squeezed through a narrow gap) — all in one smooth sound. /tʃ/ and /dʒ/ are the two English affricates.",
+    feedbackWrong: "❌ An affricate is not just a stop or just a fricative — it is a combination. It STARTS as a stop (air blocked) and immediately becomes a fricative (air squeezed). This combination is what makes /tʃ/ in 'church' and /dʒ/ in 'judge' special."
+  },
+  {
+    afterSlide: 5,
+    badge: "❓ Quiz 2 of 4",
+    question: "You hold a piece of paper in front of your mouth and say 'pin'. The paper moves strongly. Then you say 'spin' — the paper barely moves. What explains this difference?",
+    options: [
+      "The /p/ in 'pin' is voiced; the /p/ in 'spin' is voiceless",
+      "The /p/ in 'pin' is aspirated [pʰ]; the /p/ in 'spin' is unaspirated [p]",
+      "'pin' uses a different phoneme than 'spin'",
+      "The /p/ in 'spin' is silent"
+    ],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! The /p/ in 'pin' is ASPIRATED [pʰ] — it has a little puff of air. The /p/ in 'spin' is UNASPIRATED [p] — after /s/, stops lose their aspiration. Both are allophones of the same phoneme /p/.",
+    feedbackWrong: "❌ Both 'pin' and 'spin' use the same phoneme /p/ — the difference is ASPIRATION. At the start of a stressed syllable, /p/ is aspirated [pʰ] (puff of air). After /s/, it is unaspirated [p] (no puff)."
+  },
+  {
+    afterSlide: 7,
+    badge: "❓ Quiz 3 of 4",
+    question: "All nasal stops in English (/m/, /n/, /ŋ/) share one important feature. What is it?",
+    options: [
+      "They are all voiceless",
+      "They are all made at the alveolar ridge",
+      "They are all VOICED — the vocal cords always vibrate",
+      "They can all appear at the start of syllables"
+    ],
+    correct: 2,
+    feedbackCorrect: "✅ Correct! All nasal stops are VOICED — the vocal cords vibrate for /m/, /n/, and /ŋ/. (Note: /ŋ/ cannot start a syllable in English, but the other two can.)",
+    feedbackWrong: "❌ All three nasal stops (/m/, /n/, /ŋ/) are VOICED — the vocal cords always vibrate when making these sounds. They also all involve air flowing through the nose."
+  },
+  {
+    afterSlide: 8,
+    badge: "❓ Quiz 4 of 4",
+    question: "A student says the word 'sing' as 'sing-g' — adding an extra /g/ sound at the end. What is the CORRECT pronunciation?",
+    options: [
+      "The student is correct — /g/ must always follow /ŋ/",
+      "The correct pronunciation ends in /ŋ/ only — no /g/ sound",
+      "The word ends in /n/ not /ŋ/",
+      "Both pronunciations are equally correct"
+    ],
+    correct: 1,
+    feedbackCorrect: "✅ Correct! In standard English, 'sing' ends in /ŋ/ ONLY — /sɪŋ/. There is NO /g/ sound. The /g/ appears in words like 'finger' /fɪŋɡər/ but not in 'sing', 'ring', or 'long'.",
+    feedbackWrong: "❌ In standard English, 'sing' = /sɪŋ/ — the word ends with JUST the /ŋ/ sound. Adding /g/ (/sɪŋɡ/) is a common learner error. The /g/ appears in some words like 'finger' but NOT in 'sing' or 'ring'."
+  }
+];
+
+let currentSlide = 1;
+const TOTAL_SLIDES = 12;
+let quizQueue = [...QUIZZES];
+let activeQuiz = null;
+let quizAnswered = false;
+
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('s' + n);
+  if (t) t.classList.add('active');
+  document.getElementById('btn-prev').disabled = (n <= 1);
+  document.getElementById('btn-next').disabled = (n >= TOTAL_SLIDES);
+  updateDots();
+  updateProgress();
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === currentSlide));
+}
+
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((currentSlide - 1) / (TOTAL_SLIDES - 1) * 100) + '%';
+  document.getElementById('slide-counter').textContent = 'Slide ' + currentSlide + ' / ' + TOTAL_SLIDES;
+}
+
+function nextSlide() {
+  const idx = quizQueue.findIndex(q => q.afterSlide === currentSlide);
+  if (idx !== -1) {
+    activeQuiz = quizQueue[idx];
+    openQuiz(activeQuiz);
+    return;
+  }
+  if (currentSlide < TOTAL_SLIDES) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 1) {
+    currentSlide--;
+    showSlide(currentSlide);
+  }
+}
+
+function goToSlide(n) {
+  if (n >= 1 && n <= TOTAL_SLIDES) {
+    currentSlide = n;
+    showSlide(currentSlide);
+  }
+}
+
+function openQuiz(quiz) {
+  quizAnswered = false;
+  document.getElementById('q-badge').textContent = quiz.badge;
+  document.getElementById('q-question').textContent = quiz.question;
+  document.getElementById('q-feedback').className = 'quiz-feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-continue').style.display = 'none';
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  ['A', 'B', 'C', 'D'].forEach((l, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.innerHTML = '<div class="opt-letter">' + l + '</div><span>' + quiz.options[i] + '</span>';
+    btn.onclick = () => selectAnswer(i, quiz.correct, quiz.feedbackCorrect, quiz.feedbackWrong);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+
+function selectAnswer(chosen, correct, fbC, fbW) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('q-feedback');
+  document.querySelectorAll('.quiz-option')[chosen].classList.add(chosen === correct ? 'correct' : 'wrong');
+  if (chosen !== correct) document.querySelectorAll('.quiz-option')[correct].classList.add('correct');
+  fb.textContent = chosen === correct ? fbC : fbW;
+  fb.className = 'quiz-feedback ' + (chosen === correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('q-continue').style.display = 'inline-block';
+  const idx = quizQueue.findIndex(q => q === activeQuiz);
+  if (idx !== -1) quizQueue.splice(idx, 1);
+}
+
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+  if (currentSlide < TOTAL_SLIDES) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function openFullPage() {
+  window.open(window.location.href, '_blank');
+}
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('quiz-overlay').classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    nextSlide();
+  }
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    prevSlide();
+  }
+});
+
+function buildDots() {
+  const row = document.getElementById('dot-row');
+  row.innerHTML = '';
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    row.appendChild(d);
+  }
+}
+
+buildDots();
+showSlide(1);
+</script>
+</body>
+</html>
